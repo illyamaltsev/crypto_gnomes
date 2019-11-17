@@ -1,0 +1,66 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
+}
+
+body {
+    position: relative;
+    min-height: 100vh;
+    background-color: gainsboro;
+}
+
+input {
+    border: none;
+    padding: 5px;
+    min-width: 200px;
+}
+
+button {
+  text-decoration: none;
+  padding: 10px;
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 1px;
+  background: green;
+  cursor: pointer;
+  border: none;
+  transition: all .4s;
+}
+
+.main-form__button {
+    background: transparent;
+    min-width: 250px;
+    min-height: 50px;
+    border: 3px solid white;
+    font-size: 22px;
+}
+
+.main-form__button:hover {
+    background: white;
+    color: black;
+}
+
+button:hover {
+   background: blue;
+}
+
+.main-form {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%,-50%);
+    min-height: 300px;
+    min-width: 500px;
+    padding-top: 60px;
+    color: white;
+    background: black;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    font-size: 28px;
+    text-align: center;
+}
+
+.main-form__label {
+    display: block;
+    margin: 20px 0;
+}
