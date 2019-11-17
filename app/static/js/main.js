@@ -10,12 +10,15 @@ addWalletButton.addEventListener('click', function(e) {
     });
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", '/api/create-wallet/', true);
+    xhr.open("POST", '/api/create-wallet', true)
     xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 
     xhr.onreadystatechange = function() {
     if (this.readyState != 4) return;
         alert( this.responseText );
-    };
+         var clone = document.importNode(document.querySelector('#wallet').content, true);
+        clone.querySelector('.wallet-name').innerHtml += this.responseText;
+        document.querySelector('wallets').querySelector('ul').appendChild(clone);
+    }
     xhr.send(json);
 });
