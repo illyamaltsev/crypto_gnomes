@@ -8,24 +8,21 @@
 </head>
 <body>
     <header>
-        Hello, <span>Login</span>
+        Hello <span> {{user.login}}  </span>
         <a href="/logout">Logout</a>
-        <a href="/stakan">Cups</a>
+        <a href="/stakan"></a>
     </header>
+    <section class="wallets">
     <main>
         <section class="wallets">
         <!--Fill on server-->
         <h1>Your wallets</h1>
         <ul>
+        {% for user_coin in user_coins %}
             <li>
-                <span>btc</span> : <span>12</span>
+                <span>{{user_coin.coin.name}}</span> <span>{{user_coin.balance}}</span>
             </li>
-            <li>
-                <span>grn</span> : <span>722</span>
-            </li>
-            <li>
-                <span>usd</span> : <span>520</span>
-            </li>
+            {% endfor %}
         </ul>
         <form>
             <select>
@@ -50,16 +47,15 @@
         <button>Withdrow</button> <!--Async POST query to /user/withdrow with param {login, count, coinName}-->
         <button>Deposit</button> <!--Async POST query to /user/deposit with param {login, count, coinName}-->
     </section>
+
     <section class="wallet-history">
         <h1>Wallet history</h1>
         <ul>
-            <!--Fill on server-->
-            <li>
-                Type: <span>Deposit</span> Currency: <span>Btc</span> Value: <span>200</span>
+             {% for w_history in wallet_history %}
+              <li>
+                <span>Type = {{w_history.operation}}</span> <span>Currency: {{w_history.coin.name}}</span>  <span>= {{w_history.count}}</span>
             </li>
-            <li>
-                Type: <span>Deposit</span> Currency: <span>Btc</span> Value: <span>200</span>
-            </li>
+            {% endfor %}
         </ul>
     </section>
     </main>

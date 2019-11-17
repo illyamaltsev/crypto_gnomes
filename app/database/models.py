@@ -47,6 +47,8 @@ class Wallet_History(db.Model):
     count = db.Column(db.Float, nullable=False)
     operation = db.Column(db.Enum(W_D), server_default="W")
 
+# wh.coin.balance
+
 
 class Stakan(db.Model):
     __tablename__ = "stakan"
@@ -57,6 +59,8 @@ class Stakan(db.Model):
     price = db.Column(db.Float, nullable=False)
     status = db.Column(db.Enum(A_InA), server_default="InA")
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    coin_id = db.Column(db.Integer, db.ForeignKey("coins.id"), nullable=False)
+    toCoin_id = db.Column(db.Integer, db.ForeignKey("coins.id"), nullable=False)
+    fromCoin_id = db.Column(db.Integer, db.ForeignKey("coins.id"), nullable=False)
     user = db.relationship(User, backref=backref("stakan", cascade="all, delete-orphan"))
-    coin = db.relationship(Coin, backref=backref("stakan", cascade="all, delete-orphan"))
+    from_coin = db.relationship(Coin, backref=backref("stakan", cascade="all, delete-orphan"))
+    to_coin = db.relationship(Coin, backref=backref("stakan", cascade="all, delete-orphan"))

@@ -8,20 +8,19 @@
 </head>
 <body>
 <header>
-    Hello <span>Login</span>
-    <a href="{{ url_for('auth.logout')}}">Logout</a>
+    Hello <span>{{user.login}}</span>
+    <a href="/logout">Logout</a>
     <a href="/"></a> <!-- redirect back to user -->
 </header>
+
 <section>
     <h1>Cup history</h1>
     <ul>
-        <!--Fill on server-->
+       {% for all_stkn in all_stakans %}
         <li>
-            <span>Bought</span> From: <span>btc</span> to: <span>usd</span>, price: <span>100</span>, count: <span>2</span>
+            <span>Bought From{{all_stkn.coin.name}}</span> <span>To:{{all_stkn.coin.name}}</span> <span>Price:{{all_stkn.price}}</span> <span>Count:{{all_stkn.count}}</span>
         </li>
-        <li>
-            <span>Sold</span> From: <span>btc</span> to: <span>usd</span>, price: <span>100</span>, count: <span>2</span>
-        </li>
+        {% endfor %}
     </ul>
 </section>
 <section>
@@ -75,13 +74,26 @@
         </li>
     </ul>
 </section>
+
+<!--
+    <section class="wallets">
+        <ul>
+        {% for user_coin in user_coins %}
+            <li>
+                <span>{{user_coin.coin.name}}</span> <span>{{user_coin.balance}}</span>
+            </li>
+            {% endfor %}
+        </ul>
+-->
+
+
+
 <section>
     <h1>User cups history</h1>
     <ul>
-        <!--Fill on server-->
+         {% for user_cup in user_stakans %}
         <li>
-            <span>Bought</span> From: <span>btc</span> to: <span>usd</span>, price: <span>100</span>, count: <span>2</span>
-        </li>
+            <span>Bought From: </span>{{user_stakans.coin.name}} to:<span>{{user_stakans.coin.name}}</span>,  price: <span>user_stakans.coin.price</span>
         <li>
             <span>Sold</span> From: <span>btc</span> to: <span>usd</span>, price: <span>100</span>, count: <span>2</span>
         </li>
