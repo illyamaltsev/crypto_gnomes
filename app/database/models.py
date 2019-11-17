@@ -11,7 +11,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     open_key = db.Column(db.String(20), unique=True, nullable=False)
     private_key = db.Column(db.String(20), unique=True, nullable=False)
-    login = db.Column(db.String(20), nunique=True, nullable=False)
+    login = db.Column(db.String(20), unique=True, nullable=False)
     password = db.Column(db.String(20), unique=True, nullable=False)
     coins = db.relationship("Coin", secondary="coins_of_user")
     wallets = db.relationship("Coin", secondary="wallet_history")
@@ -50,6 +50,7 @@ class Wallet_History(db.Model):
 
 class Stakan(db.Model):
     __tablename__ = "stakan"
+
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.Enum(B_S), server_default="B")
     count = db.Column(db.Float, nullable=False)

@@ -1,5 +1,6 @@
 from flask import session, url_for, redirect, render_template
 
+from app.database.models import User, User_Coin, Wallet_History, Stakan
 from app.modules.auth import login_required
 from . import pages
 
@@ -29,14 +30,18 @@ def registration():
 
 @login_required
 @pages.route("/user/")
-def user():
+def user_page():
     """ View that returns user template.
     """
     user_id = session.get('user_id', None)
 
-    # some user manipulation
+    user = User.query.get(user_id)
 
-    return render_template('user.html')
+    user_coins = User_Coin.query.filter_by(user_id=user_id).all()
+
+    wallet_history = Wallet_History.query.filter_by(user_id=user_id).all()
+
+    return render_template('user.html', user=user, user_coins=user_coins, wallet_history=wallet_history)
 
 
 @login_required
@@ -46,6 +51,10 @@ def stakan():
     """
     user_id = session.get('user_id', None)
 
-    # some user and stakan manipulation
+    user = User.query.get(user_id)
 
-    return render_template('stakan.html')
+    all_stakans = Stakan.query.all()
+
+    user_stakans = Stakan.query.filter_by(user_id=user_id)
+
+    return render_template('stakan.html', user=user, all_stakans=all_stakans, user_stakans=user_stakans)
