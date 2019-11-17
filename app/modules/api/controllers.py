@@ -14,3 +14,10 @@ def add_wallet():
     db.session.add(uc)
     db.session.commit()
     return Response(uc.coin.name, 200)
+
+
+@api.route('/api/do-withdraw/', methods=['POST'])
+def do_withdraw():
+    user_id = session.get('user_id')
+
+    return Response('lol', 200)

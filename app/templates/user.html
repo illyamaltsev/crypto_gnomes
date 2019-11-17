@@ -54,12 +54,17 @@
         <ul>
              {% for w_history in wallet_history %}
               <li>
-                <span>Type = {{w_history.operation}}</span> <span>Currency: {{w_history.coin.name}}</span>  <span>= {{w_history.count}}</span>
+                <span>Type = {{w_history.operation.value}}</span> <span>Currency: {{w_history.coin.name}}</span>  <span>= {{w_history.count}}</span>
             </li>
             {% endfor %}
         </ul>
     </section>
     </main>
+    <template id="wallet">
+        <li>
+            <span class="wallet-name"></span> <span class="wallet-amount">0</span>
+        </li>
+    </template>
 <script src="../static/js/main.js"></script>
 </body>
 </html>
