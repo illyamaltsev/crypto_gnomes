@@ -1,6 +1,6 @@
-from flask import session, url_for, redirect, render_template
+from flask import session, url_for, redirect, render_template, request
 
-from app.database.models import User, User_Coin, Wallet_History, Stakan
+from app.database.models import User, User_Coin, Wallet_History, Stakan, db
 from app.modules.auth import login_required
 from . import pages
 
@@ -12,20 +12,29 @@ def login():
         All not authenticated requests redirected here.
         If session have info for login, it redirects to user page.
     """
-    # user_id = session.get('user_id', None)
+    user_id = session.get('user_id', None)
 
-    # if user_id and User.query.get(user_id):
-    #    return redirect(url_for('pages.user', page='orders'))
+    if user_id and User.query.get(user_id):
+        return redirect(url_for('pages.user_page'))
 
     return render_template('authorization.html')
 
 
-@pages.route("/registration/")
+@pages.route("/registration/", methods=['GET', 'POST'])
 def registration():
     """ View that returns registration template.
     """
-
-    return render_template('registration.html')
+    if request.method == 'POST':
+        login = request.form["login"]
+        password = request.form["password"]
+        if User.query.filter_by(login=login).first():
+            return redirect(url_for('pages.registration'))
+        new_user = User(login=login, password=password)
+        db.session.add(new_user)
+        db.session.commit()
+        return redirect(url_for('pages.login'))
+    else:
+        return render_template('registration.html')
 
 
 @login_required

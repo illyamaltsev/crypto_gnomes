@@ -8,10 +8,11 @@
 </head>
 <body>
 
-<form class="main-form" action="/auth">
-    <label class="main-form__label">Login: <input type="text"></label>
-    <label class="main-form__label">Password: <input type="password"></label>
-    <button class="button main-form__button" type="submit">Authorize</button>
+<form class="main-form" method="post" action="/auth/">
+    <label class="main-form__label">Login: <input type="text" name="login"></label>
+    <label class="main-form__label">Password: <input type="password" name="password"></label>
+    <button class="button main-form__button" type="submit">Sing in</button>
+    <a class="button main-form__button" href="/registration/">Sing in</a>
 </form>
 
 </body>

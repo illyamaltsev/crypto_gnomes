@@ -24,19 +24,22 @@ def create_app(config_object=None):
 
     """ DB, migration and marshmallow connection
     """
-    # db = models.db
-    # db.init_app(app)
-    # ma.init_app(app)
+    db = models.db
+    db.init_app(app)
+    ma.init_app(app)
 
     """ Blueprints connection
     """
     from app.modules import pages
     from app.modules import api
+    from app.modules import auth
 
     # pages - responses html pages of apb to client
     app.register_blueprint(pages.pages)
 
     # api - responses json objects from db by AJAX to fill the page
     app.register_blueprint(api.api)
+
+    app.register_blueprint(auth.authBP)
 
     return app

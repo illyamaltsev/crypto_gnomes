@@ -9,10 +9,10 @@ db = SQLAlchemy()
 class User(db.Model):
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
-    open_key = db.Column(db.String(20), unique=True, nullable=False)
-    private_key = db.Column(db.String(20), unique=True, nullable=False)
+    open_key = db.Column(db.String(20), unique=True, nullable=True)
+    private_key = db.Column(db.String(20), unique=True, nullable=True)
     login = db.Column(db.String(20), unique=True, nullable=False)
-    password = db.Column(db.String(20), unique=True, nullable=False)
+    password = db.Column(db.String(20), nullable=False)
     coins = db.relationship("Coin", secondary="coins_of_user")
     wallets = db.relationship("Coin", secondary="wallet_history")
     stakans = db.relationship("Coin", secondary="stakan")
