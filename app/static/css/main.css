@@ -3,6 +3,24 @@
     font-family: 'Raleway', sans-serif;
 }
 
+section {
+    margin-bottom: 100px;
+}
+
+select {
+    font-size: 16px;
+    padding: 10px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    background: green;
+}
+
+li {
+    list-style: none;
+    font-size: 20px;
+}
+
 a {
     transition: all .4s;
     text-decoration: none;
@@ -96,4 +114,31 @@ button:hover {
 .main-form__label {
     display: block;
     margin: 20px 0;
+}
+
+.wallets form button {
+    margin-left: 20px;
+}
+
+.updateBalance input{
+    font-size: 16px;
+    padding: 10px;
+}
+
+.updateBalance button {
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+.updateBalance select {
+    margin-left: 20px;
+}
+
+.wallet-history span{
+    margin-right: 20px;
+}
+
+.wallet-history li{
+    margin-bottom: 10px;
+    margin-top: 10px;
 }

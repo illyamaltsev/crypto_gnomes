@@ -24,7 +24,8 @@
             </li>
             {% endfor %}
         </ul>
-        <form>
+        <h1>Add wallet</h1>
+        <form class="addWallet">
             <select>
                 <!--Fill on server-->
                 <option value="btc">Bitcoin</option>
@@ -36,6 +37,7 @@
         </form>
     </section>
     <section class="updateBalance">
+        <h1>Update wallet</h1>
         <input type="number" placeholder="Amount">
         <select>
             <!--Fill on server-->
@@ -44,8 +46,8 @@
             <option value="usd">Dollar</option>
         </select>
         </br>
-        <button>Withdrow</button> <!--Async POST query to /user/withdrow with param {login, count, coinName}-->
-        <button>Deposit</button> <!--Async POST query to /user/deposit with param {login, count, coinName}-->
+        <button class="withdraw">Withdrow</button> <!--Async POST query to /user/withdrow with param {login, count, coinName}-->
+        <button class="deposit">Deposit</button> <!--Async POST query to /user/deposit with param {login, count, coinName}-->
     </section>
 
     <section class="wallet-history">
