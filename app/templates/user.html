@@ -7,20 +7,20 @@
     <link rel="stylesheet" href="../static/css/main.css">
 </head>
 <body>
-    <header>
-        Hello <span class="login">{{user.login}}</span>
-        <a href="/logout">Logout</a>
-        <a href="/stakan"></a>
-    </header>
-    <main>
-        <section class="wallets">
+<header>
+    Hello, <span> {{ user.login }}  </span>
+    <a href="/logout">Logout</a>
+    <a href="/stakan"></a>
+</header>
+<main>
+    <section class="wallets">
         <!--Fill on server-->
         <h1>Your wallets</h1>
         <ul>
-        {% for user_coin in user_coins %}
-            <li>
-                <span>{{user_coin.coin.name}}</span> <span>{{user_coin.balance}}</span>
-            </li>
+            {% for user_coin in user_coins %}
+                <li>
+                    <span>{{ user_coin.coin.name }}</span> <span>{{ user_coin.balance }}</span>
+                </li>
             {% endfor %}
         </ul>
         <h1>Add wallet</h1>
@@ -39,23 +39,32 @@
         <h1>Update wallet</h1>
         <input type="number" placeholder="Amount">
         <select>
-            <!--Fill on server-->
-            <option value="btc">Bitcoin</option>
-            <option value="grn" selected>Grivna</option>
-            <option value="usd">Dollar</option>
+            {% for user_coin in user_coins %}
+            <option value="{{ user_coin.coin.id }}">{{ user_coin.coin.name }}</option>
+            {% endfor %}
         </select>
         </br>
-        <button class="withdraw">Withdrow</button> <!--Async POST query to /user/withdrow with param {login, count, coinName}-->
-        <button class="deposit">Deposit</button> <!--Async POST query to /user/deposit with param {login, count, coinName}-->
+        <button class="withdraw">Withdrow</button>
+        <!--Async POST query to /user/withdrow with param {login, count, coinName}-->
+        <button class="deposit">Deposit</button>
+        <!--Async POST query to /user/deposit with param {login, count, coinName}-->
     </section>
 
     <section class="wallet-history">
         <h1>Wallet history</h1>
-        <ul>
-             {% for w_history in wallet_history %}
-              <li>
-                <span>Type = {{w_history.operation}}</span> <span>Currency: {{w_history.coin.name}}</span>  <span>= {{w_history.count}}</span>
-            </li>
+        <table>
+            <tr>
+                <th>currency</th>
+                <th>value</th>
+                <th>action</th>
+            </tr>
+
+            {% for w_history in wallet_history %}
+                <tr>
+                    <td>{{ w_history.coin.name }}</td>
+                    <td>{{ w_history.count }}</td>
+                    <td>{{ w_history.operation.value }}</td>
+                </tr>
             {% endfor %}
         </ul>
     </section>
