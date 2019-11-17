@@ -1,6 +1,6 @@
 from flask import session, url_for, redirect, render_template, request
 
-from app.database.models import User, User_Coin, Wallet_History, Stakan, db
+from app.database.models import User, User_Coin, Wallet_History, Stakan, db, Coin
 from app.modules.auth import login_required
 from . import pages
 
@@ -50,7 +50,9 @@ def user_page():
 
     wallet_history = Wallet_History.query.filter_by(user_id=user_id).all()
 
-    return render_template('user.html', user=user, user_coins=user_coins, wallet_history=wallet_history)
+    coins = Coin.query.all()
+
+    return render_template('user.html', user=user, user_coins=user_coins, wallet_history=wallet_history, coins=coins)
 
 
 @login_required

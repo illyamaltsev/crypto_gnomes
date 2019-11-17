@@ -27,9 +27,9 @@
         <form class="addWallet">
             <select>
                 <!--Fill on server-->
-                <option value="btc">Bitcoin</option>
-                <option value="grn" selected>Grivna</option>
-                <option value="usd">Dollar</option>
+                {% for coin in coins %}
+                <option value="{{coin.id}}">{{coin.name}}</option>
+                {% endfor %}
             </select>
             <button>Add wallet</button>
             <!--Async POST query to /user/addWallet with param {login, coinName}-->
