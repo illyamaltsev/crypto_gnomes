@@ -1,6 +1,6 @@
 from flask import session, url_for, redirect, render_template, request
 
-from app.database.models import User, User_Coin, Wallet_History, Stakan, db, Coin
+from app.database.models import User, User_Coin, Wallet_History, Stakan, db, Coin, Coin_From, Coin_To
 from app.modules.auth import login_required
 from . import pages
 
@@ -68,4 +68,15 @@ def stakan():
 
     user_stakans = Stakan.query.filter_by(user_id=user_id)
 
-    return render_template('stakan.html', user=user, all_stakans=all_stakans, user_stakans=user_stakans)
+    coin_from = Coin_From.query.all()
+
+    coin_to = Coin_To.query.all()
+
+
+
+    return render_template('stakan.html', user=user, all_stakans=all_stakans, user_stakans=user_stakans, coin_from = coin_from, coin_to = coin_to )
+
+
+
+
+

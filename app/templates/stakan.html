@@ -18,7 +18,8 @@
     <ul>
        {% for all_stkn in all_stakans %}
         <li>
-            <span>Bought From{{all_stkn.coin.name}}</span> <span>To:{{all_stkn.coin.name}}</span> <span>Price:{{all_stkn.price}}</span> <span>Count:{{all_stkn.count}}</span>
+            <span>Bought From: {{all_stkn.coins_from.coins.name}}</span> <span>To:{{all_stkn.coins_to.coins.name}}</span> <span>Price:{{all_stkn.price}}</span> <span>Count:{{all_stkn.count}}</span>
+            <span>Bought To: {{all_stkn.coins_to.coins.name}}</span> <span>To:{{all_stkn.coins_to.coins.name}}</span> <span>Price:{{all_stkn.price}}</span> <span>Count:{{all_stkn.count}}</span>
         </li>
         {% endfor %}
     </ul>
@@ -47,7 +48,7 @@
         </select>
         From :
         <select>
-            <option value="btc">Bitcoin</option>
+            <option value={{coin.name}}</option>
             <option value="grn" selected>Grivna</option>
             <option value="usd">Dollar</option>
         </select>
@@ -75,28 +76,14 @@
     </ul>
 </section>
 
-<!--
-    <section class="wallets">
-        <ul>
-        {% for user_coin in user_coins %}
-            <li>
-                <span>{{user_coin.coin.name}}</span> <span>{{user_coin.balance}}</span>
-            </li>
-            {% endfor %}
-        </ul>
--->
-
-
-
 <section>
     <h1>User cups history</h1>
     <ul>
          {% for user_cup in user_stakans %}
         <li>
-            <span>Bought From: </span>{{user_stakans.coin.name}} to:<span>{{user_stakans.coin.name}}</span>,  price: <span>user_stakans.coin.price</span>
-        <li>
-            <span>Sold</span> From: <span>btc</span> to: <span>usd</span>, price: <span>100</span>, count: <span>2</span>
+            <span>Bought From: </span>{{user_cup.coins_from.coins.name}} to:<span>{{user_stakans.coins_to.coins.name}}</span>,  price: <span>user_stakans.price</span> , count: <span>user_stakans.count</span>
         </li>
+        {% endfor %}
     </ul>
 </section>
 <script src="../static/js/main.js"></script>
