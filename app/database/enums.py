@@ -9,3 +9,8 @@ class W_D(enum.Enum):
 class B_S(enum.Enum):
     B = "Buy"
     S = "Sell"
+
+
+class A_InA(enum.Enum):
+    A = "Active"
+    InA = "Inactive"
