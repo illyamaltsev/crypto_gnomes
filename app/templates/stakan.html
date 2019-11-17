@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header>
+    Hello <span>Login</span>
+    <a href="/logout">Logout</a>
+    <a href="/"></a> <!-- redirect back to user -->
+</header>
+<section>
+    <h1>Cup history</h1>
+    <ul>
+        <!--Fill on server-->
+        <li>
+            <span>Bought</span> From: <span>btc</span> to: <span>usd</span>, price: <span>100</span>, count: <span>2</span>
+        </li>
+        <li>
+            <span>Sold</span> From: <span>btc</span> to: <span>usd</span>, price: <span>100</span>, count: <span>2</span>
+        </li>
+    </ul>
+</section>
+<section>
+    <h1>Current cups</h1>
+    <ul>
+        <!--Fill on server-->
+        <li>
+            <button>Buy</button> From: <span>btc</span> to: <span>usd</span>, price: <span>100</span>, count: <span>2</span><br>
+            <!--Async POST query to /user/stakan/buy with param {login, from, to, price, count}-->
+        </li>
+        <li>
+            <button>Sell</button> From: <span>btc</span> to: <span>usd</span>, price: <span>100</span>, count: <span>2</span>
+            <!--Async POST query to /user/stakan/sell with param {login, from, to, price, count}-->
+        </li>
+    </ul>
+</section>
+<section>
+    <h1>User cups</h1>
+    <form>
+        <!--Fill on server-->
+        <select>
+            <option value="sell">Sell</option>
+            <option value="buy" selected>Buy</option>
+        </select>
+        From :
+        <select>
+            <option value="btc">Bitcoin</option>
+            <option value="grn" selected>Grivna</option>
+            <option value="usd">Dollar</option>
+        </select>
+        To :
+        <select>
+            <option value="btc">Bitcoin</option>
+            <option value="grn" selected>Grivna</option>
+            <option value="usd">Dollar</option>
+        </select>
+        <label>Price : <input type="text"></label>
+        <label>Amount : <input type="text"></label>
+        <button>Create cup</button>
+        <!--Async POST query to /user/stakan/create with param {login, type, from, to, price, count}-->
+    </form>
+    <ul>
+        <!--Fill on server, need to get id here of stakan-->
+        <li>
+            <span>Buy</span> From: <span>btc</span> to: <span>usd</span>, price: <span>100</span>, count: <span>2</span> <button>Delete</button>
+            <!--Async DELETE query to /user/stakan/delete with param {login, id}-->
+        </li>
+        <li>
+            <span>Sell</span> From: <span>btc</span> to: <span>usd</span>, price: <span>100</span>, count: <span>2</span> <button>Delete</button>
+            <!--Async DELETE query to /user/stakan/delete with param {login, id}-->
+        </li>
+    </ul>
+</section>
+<section>
+    <h1>User cups history</h1>
+    <ul>
+        <!--Fill on server-->
+        <li>
+            <span>Bought</span> From: <span>btc</span> to: <span>usd</span>, price: <span>100</span>, count: <span>2</span>
+        </li>
+        <li>
+            <span>Sold</span> From: <span>btc</span> to: <span>usd</span>, price: <span>100</span>, count: <span>2</span>
+        </li>
+    </ul>
+</section>
+</body>
+</html>
