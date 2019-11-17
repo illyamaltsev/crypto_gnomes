@@ -9,7 +9,7 @@ from . import pages
 def login():
     """ View that returns login template.
         All not authenticated requests redirected here.
-        If session have info for login, it redirects to orders page.
+        If session have info for login, it redirects to user page.
     """
     # user_id = session.get('user_id', None)
 
@@ -19,14 +19,10 @@ def login():
     return render_template('authorization.html')
 
 
-@login_required
 @pages.route("/registration/")
 def registration():
-    """ View that returns user template.
+    """ View that returns registration template.
     """
-    user_id = session.get('user_id', None)
-
-    # some user manipulation
 
     return render_template('registration.html')
 
@@ -46,7 +42,7 @@ def user():
 @login_required
 @pages.route("/stakan/")
 def stakan():
-    """ View that returns user template.
+    """ View that returns stakan template.
     """
     user_id = session.get('user_id', None)
 
