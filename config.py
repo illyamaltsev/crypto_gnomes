@@ -1,0 +1,10 @@
+import os
+
+
+class Config(object):
+    DEBUG = True
+    SECRET_KEY = os.getenv("SECRET_KEY", "secret")
+    SQLALCHEMY_DATABASE_URI = os.getenv("SQLALCHEMY_DATABASE_URI")
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
+    TEMPLATES_AUTO_RELOAD = True
+    SQLALCHEMY_COMMIT_ON_TEARDOWN = True
