@@ -1,7 +1,11 @@
 import enum
 
 
-class ON_OFF(enum.Enum):
-    ON = "ON"
-    OFF = "OFF"
+class W_D(enum.Enum):
+    W = "Withdraw"
+    D = "Deposit"
 
+
+class B_S(enum.Enum):
+    B = "Buy"
+    S = "Sell"
