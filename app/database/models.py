@@ -73,5 +73,4 @@ class Stakan(db.Model):
     coin = db.relationship(Coin, backref=backref("wallet_history", cascade="all, delete-orphan"))
     count = db.Column(db.Double, nullable=False)
 
-
     type = db.Column(db.Enum(B_S), server_default="B")
