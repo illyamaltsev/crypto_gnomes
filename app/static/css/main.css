@@ -3,10 +3,43 @@
     font-family: 'Raleway', sans-serif;
 }
 
+a {
+    transition: all .4s;
+    text-decoration: none;
+    color: green;
+}
+
+a:hover {
+    color: blue;
+}
+
+main {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
 body {
+    margin: 0;
     position: relative;
     min-height: 100vh;
     background-color: gainsboro;
+}
+
+header {
+    display: flex;
+    padding: 30px;
+    font-size: 20px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+header span {
+    margin: 0 10px;
+}
+
+header a {
+    margin: 0 15px;
+    display: inline-block;
 }
 
 input {
