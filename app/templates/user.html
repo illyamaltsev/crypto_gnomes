@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+</head>
+<body>
+    <header>
+        Hello <span>Login</span>
+        <a href="/logout">Logout</a>
+        <a href="/stakan"></a>
+    </header>
+    <section class="wallets">
+        <!--Fill on server-->
+        <ul>
+            <li>
+                <span>btc</span> : <span>12</span>
+            </li>
+            <li>
+                <span>grn</span> : <span>722</span>
+            </li>
+            <li>
+                <span>usd</span> : <span>520</span>
+            </li>
+        </ul>
+        <form>
+            <select>
+                <!--Fill on server-->
+                <option value="btc">Bitcoin</option>
+                <option value="grn" selected>Grivna</option>
+                <option value="usd">Dollar</option>
+            </select>
+            <button>Add wallet</button>
+            <!--Async POST query to /user/addWallet with param {login, coinName}-->
+        </form>
+    </section>
+    <section class="updateBalance">
+        <input type="number" placeholder="Amount">
+        <select>
+            <!--Fill on server-->
+            <option value="btc">Bitcoin</option>
+            <option value="grn" selected>Grivna</option>
+            <option value="usd">Dollar</option>
+        </select>
+        </br>
+        <button>Withdrow</button> <!--Async POST query to /user/withdrow with param {login, count, coinName}-->
+        <button>Deposit</button> <!--Async POST query to /user/deposit with param {login, count, coinName}-->
+    </section>
+    <section class="wallet-history">
+        <h1>Wallet history</h1>
+        <ul>
+            <!--Fill on server-->
+            <li>
+                Type: <span>Deposit</span> Currency: <span>Btc</span> Value: <span>200</span>
+            </li>
+            <li>
+                Type: <span>Deposit</span> Currency: <span>Btc</span> Value: <span>200</span>
+            </li>
+        </ul>
+    </section>
+</body>
+</html>
