@@ -5,58 +5,126 @@
     <title>Main Page</title>
     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/main.css">
+    <script src="https://kit.fontawesome.com/658f54bbb0.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
-        Hello <span class="login">{{user.login}}</span>
-        <a href="/logout">Logout</a>
-        <a href="/stakan"></a>
+        <div class="header__wrap">
+            <a class="header__logo" href="/">Cryptognomes</a>
+            <a class="link--active" href="/">User page</a>
+            <a href="/">Orders</a>
+            <div class="logout">
+                Hello <span class="login">{{user.login}}</span>
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
     </header>
     <main>
         <section class="wallets">
         <!--Fill on server-->
-        <h1>Your wallets</h1>
+        <h1><i style="margin-right: 10px;" class="fas fa-wallet"></i> Wallets</h1>
         <ul>
-        {% for user_coin in user_coins %}
-                <li>
-                    <span class="wallet-name">{{ user_coin.coin.name }}</span> <span class="wallet-amount">{{ user_coin.balance }}</span>
-                </li>
-            {% endfor %}
-        </ul>
-        <h1>Add wallet</h1>
-        <form class="addWallet">
-            <select>
-                <!--Fill on server-->
-                {% for coin in coins %}
-                <option value="{{coin.id}}">{{coin.name}}</option>
-                {% endfor %}
-            </select>
-            <button>Add wallet</button>
-            <!--Async POST query to /user/addWallet with param {login, coinName}-->
-        </form>
-    </section>
-    <section class="updateBalance">
-        <h1>Update wallet</h1>
-        <input type="number" placeholder="Amount">
-        <select>
-            <!--Fill on server-->
-            <option value="btc">Bitcoin</option>
-            <option value="grn" selected>Grivna</option>
-            <option value="usd">Dollar</option>
-        </select>
-        </br>
-        <button class="withdraw">Withdrow</button> <!--Async POST query to /user/withdrow with param {login, count, coinName}-->
-        <button class="deposit">Deposit</button> <!--Async POST query to /user/deposit with param {login, count, coinName}-->
-    </section>
-
-    <section class="wallet-history">
-        <h1>Wallet history</h1>
-        <ul>
-             {% for w_history in wallet_history %}
-              <li>
-                <span>Type = {{w_history.operation.value}}</span> <span>Currency: {{w_history.coin.name}}</span>  <span>= {{w_history.count}}</span>
+            <div class="wallets__headings">
+                <span>Currency</span>
+                <span>Total</span>
+                <span>Action</span>
+            </div>
+        <!--{% for user_coin in user_coins %}-->
+                <!--<li>-->
+                    <!--<span class="wallet-name">{{ user_coin.coin.name }}</span> <span class="wallet-amount">{{ user_coin.balance }}</span>-->
+                <!--</li>-->
+            <li>
+                <span class="wallet-name"><i class="fas fa-dollar-sign"></i> Bitcoin</span>
+                <span class="wallet-amount">100</span>
+                <div>
+                    <span data-action="withdraw" class="action-button">Withdrow</span>
+                    <span data-action="deposit" class="action-button">Deposit</span>
+                </div>
             </li>
-            {% endfor %}
+            <li>
+                <span class="wallet-name"> <i class="fab fa-ethereum"></i> Ethereum</span>
+                <span class="wallet-amount">324</span>
+                <div>
+                    <span data-action="withdraw" class="action-button">Withdrow</span>
+                    <span data-action="deposit" class="action-button">Deposit</span>
+                </div>
+            </li>
+            <li>
+                <span class="wallet-name"><i class="fas fa-hryvnia"></i> Grivna</span>
+                <span class="wallet-amount">625</span>
+                <div>
+                    <span data-action="withdraw" class="action-button">Withdrow</span>
+                    <span data-action="deposit" class="action-button">Deposit</span>
+                </div>
+            </li>
+            <!--{% endfor %}-->
+        </ul>
+        <div class="wallets__add">
+            <h1>Add wallet</h1>
+            <form class="addWallet">
+                <select>
+                    <!--Fill on server-->
+                    {% for coin in coins %}
+                    <option value="{{coin.id}}">{{coin.name}}</option>
+                    {% endfor %}
+                </select>
+                <button>Add wallet</button>
+                <!--Async POST query to /user/addWallet with param {login, coinName}-->
+            </form>
+        </div>
+    </section>
+    <section class="updateBalance updateBalance--withdraw">
+        <div class="updateBalance__wrap">
+            <div>
+                <span class="updateBalance__closeButton"><i class="fas fa-times"></i></span>
+                <span>Currency to withdraw :</span> <span class="updateBalance__currency"></span>
+            </div>
+            <input type="number" placeholder="Amount">
+            <button class="withdraw">Withdraw</button> <!--Async POST query to /user/withdrow with param {login, count, coinName}-->
+        </div>
+    </section>
+    <section class="updateBalance updateBalance--deposit">
+        <div class="updateBalance__wrap">
+            <div>
+                <span class="updateBalance__closeButton"><i class="fas fa-times"></i></span>
+                <span>Currency to deposit :</span> <span class="updateBalance__currency"></span>
+            </div>
+            <input type="number" placeholder="Amount">
+            <button class="deposit">Deposit</button> <!--Async POST query to /user/deposit with param {login, count, coinName}-->
+        </div>
+    </section>
+    <section class="wallet-history">
+        <h1><i style="margin-right: 10px;" class="fas fa-history"></i> Wallet history</h1>
+        <ul>
+            <div class="wallet-history__headings">
+                <span>Currency</span>
+                <span>Total</span>
+                <span>Action</span>
+                <span>Time</span>
+            </div>
+             <!--{% for w_history in wallet_history %}-->
+              <!--<li>-->
+                <!--<span>Type = {{w_history.operation.value}}</span> <span>Currency: {{w_history.coin.name}}</span>  <span>= {{w_history.count}}</span>-->
+              <!--</li>-->
+            <!--{% endfor %}-->
+            <li>
+                <span class="wallet-history__currency"><i class="fas fa-dollar-sign"></i> Bitcoin</span>
+                <span class="wallet-history__amount">100</span>
+                <span class="wallet-history__type">Withdraw</span>
+                <span class="wallet-history__time">23 May 1992</span>
+            </li>
+            <li>
+                <span class="wallet-history__currency"><i class="fas fa-dollar-sign"></i> Bitcoin</span>
+                <span class="wallet-history__amount">100</span>
+                <span class="wallet-history__type">Withdraw</span>
+                <span class="wallet-history__time">23 May 1992</span>
+            </li>
+            <li>
+                <span class="wallet-history__currency"><i class="fas fa-dollar-sign"></i> Bitcoin</span>
+                <span class="wallet-history__amount">100</span>
+                <span class="wallet-history__type">Withdraw</span>
+                <span class="wallet-history__time">23 May 1992</span>
+            </li>
         </ul>
     </section>
     </main>
