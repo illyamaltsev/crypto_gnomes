@@ -1,7 +1,7 @@
 from flask import session, request, Response
 
 from app.database.enums import W_D
-from app.database.models import UserCoin, db, WalletHistory, Stakan, Coin
+from app.database.models import UserCoin, db, WalletHistory, Stakan, Coin, User
 from . import api
 
 
@@ -75,6 +75,28 @@ def do_stakan_buy():
     user_id = session.get('user_id')
     stakan_id = request.form.get('stakan_id')
     stakan = Stakan.query.get(stakan_id)
+
+    user1 = User.query.get(stakan.user_id)
+    user2 = User.query.get(user_id)
+
+    uc_1_1 = UserCoin.query.filter_by(user_id=user1.id, coin_id=stakan.coinsFrom[0].id)
+    uc_1_2 = UserCoin.query.filter_by(user_id=user1.id, coin_id=stakan.coinsTo[0].id)
+    uc_2_1 = UserCoin.query.filter_by(user_id=user2.id, coin_id=stakan.coinsFrom[0].id)
+    uc_2_2 = UserCoin.query.filter_by(user_id=user2.id, coin_id=stakan.coinsTo[0].id)
+
+    amount1 = stakan.count
+    amount2 = stakan.count * stakan.price
+
+    if stakan.type.value == "Buy":
+        uc_1_1.amount += amount1
+        uc_1_2.amount -= amount2
+        uc_2_1.amount -= amount1
+        uc_2_2.amount += amount2
+    else:
+        uc_1_1.amount -= amount1
+        uc_1_2.amount += amount2
+        uc_2_1.amount += amount1
+        uc_2_2.amount -= amount2
 
     db.session.commit()
     return Response('ok', 200)
