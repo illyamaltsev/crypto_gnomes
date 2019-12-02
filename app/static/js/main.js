@@ -31,24 +31,64 @@ var withdrawSection = document.querySelector('.updateBalance--withdraw');
 
 
 if(walletList) {
+    var postWithdraw = function() {
+
+    }
+    var postDeposit = function() {
+
+    }
+
     depositSection.querySelector('.updateBalance__closeButton').addEventListener('click', function (e) {
+        depositSection.querySelector('.deposit').removeEventListener('click', postDeposit);
         depositSection.style.display = 'none';
     });
 
     withdrawSection.querySelector('.updateBalance__closeButton').addEventListener('click', function (e) {
+        withdrawSection.querySelector('.withdraw').removeEventListener('click', postWithdraw);
         withdrawSection.style.display = 'none';
     });
 
     walletList.forEach(function (el) {
         el.addEventListener('click', function (e) {
             if(e.target.dataset.action === 'withdraw') {
+                postWithdraw = function() {
+                    var formData = new FormData(document.forms.withdraw);
+                    formData.append("user_coin_id", el.querySelector('.wallet-name').id);
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", "/api/do-withdraw/");
+
+                    xhr.onreadystatechange = function() {
+                      if (this.readyState != 4) return;
+                      withdrawSection.querySelector('.updateBalance__closeButton').click();
+                      el.querySelector('.wallet-amount').textContent = +el.querySelector('.wallet-amount').textContent - withdrawSection.querySelector('input').value;
+                    }
+                    xhr.send(formData);
+                }
                 withdrawSection.querySelector('.updateBalance__currency').text = e.currentTarget.querySelector('.wallet-name').text;
                 withdrawSection.style.display = 'block';
+                withdrawSection.querySelector('.withdraw').addEventListener('click', postWithdraw);
             }
-            if(e.target.dataset.action === 'deposit'){
+            if(e.target.dataset.action === 'deposit') {
+                postDeposit = function() {
+                    var formData = new FormData(document.forms.deposit);
+                    formData.append("user_coin_id", el.querySelector('.wallet-name').id);
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", "/api/do-deposit/");
+
+                    xhr.onreadystatechange = function() {
+                      if (this.readyState != 4) return;
+                      depositSection.querySelector('.updateBalance__closeButton').click();
+                      el.querySelector('.wallet-amount').textContent = +el.querySelector('.wallet-amount').textContent + +depositSection.querySelector('input').value;
+                    }
+                    xhr.send(formData);
+                }
                 depositSection.querySelector('.updateBalance__currency').text = e.currentTarget.querySelector('.wallet-name').text;
                 depositSection.style.display = 'block';
+                depositSection.querySelector('.deposit').addEventListener('click', postDeposit);
             }
         });
     });
 }
+
+var withdrawButton = document.querySelector('.withdraw');
+var depositButton = document.querySelector('.deposit');

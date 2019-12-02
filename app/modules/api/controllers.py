@@ -20,8 +20,8 @@ def add_wallet():
 @api.route('/api/do-withdraw/', methods=['POST'])
 def do_withdraw():
     user_id = session.get('user_id')
-    user_coin_id = request.form.get('user_coin_id')
-    amount = request.form.get('amount')
+    user_coin_id = int(request.form.get('user_coin_id'))
+    amount = int(request.form.get('amount'))
 
     uc = UserCoin.query.get(user_coin_id)
     uc.balance -= amount
@@ -36,8 +36,8 @@ def do_withdraw():
 @api.route('/api/do-deposit/', methods=['POST'])
 def do_deposit():
     user_id = session.get('user_id')
-    user_coin_id = request.form.get('user_coin_id')
-    amount = request.form.get('amount')
+    user_coin_id = int(request.form.get('user_coin_id'))
+    amount = int(request.form.get('amount'))
 
     uc = UserCoin.query.get(user_coin_id)
     uc.balance += amount
