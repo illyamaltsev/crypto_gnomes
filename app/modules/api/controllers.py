@@ -73,7 +73,6 @@ def do_stakan_buy():
     stakan_id = request.form.get('stakan_id')
     stakan = Stakan.query.get(stakan_id)
 
-
     db.session.commit()
     return Response('ok', 200)
 
