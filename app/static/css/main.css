@@ -131,8 +131,9 @@ button {
 }
 
 .main-form__button:hover {
+    border: 3px solid limegreen;
     background: white;
-    color: black;
+    color: limegreen;
 }
 
 button:hover {
@@ -148,7 +149,7 @@ button:hover {
     min-width: 500px;
     padding-top: 60px;
     color: white;
-    background: black;
+    background-color: rgb(39, 39, 54);
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     font-size: 28px;
     text-align: center;
@@ -247,6 +248,18 @@ button:hover {
     display: block;
     margin: 0 auto;
     min-width: 100%;
+}
+                                                    /*.keys */
+.keys div {
+    font-size: 16px;
+    padding: 20px 40px;
+    background-color: white;
+    border-radius: 3px;
+}
+
+.keys div span:first-child {
+    display: block;
+    margin-bottom: 10px;
 }
 
                                                     /*.updateBalance*/
