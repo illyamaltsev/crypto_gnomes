@@ -36,10 +36,11 @@
                 <span>Action</span>
             </div>
             {% for user_stak in user_stakans %}
-                {% if user_stak.status.value == 'Active' %}
+            {% if user_stak.status.value == 'Active' %}
             <li id="{{user_stak.id}}">
-             <span class="cash">{{user_stak.coinsFrom[0].name}}</span> <span class="cash">{{user_stak.coinsTo[0].name}}</span> <span>{{user_stak.price}}</span> <span>{{user_stak.count}}</span> <span class="action-button">Buy</span>
-            <!--Async POST query to /user/stakan/buy with param {login, from, to, price, count}-->
+                <span class="cash">{{user_stak.coinsFrom[0].name}}</span> <span class="cash">{{user_stak.coinsTo[0].name}}</span>
+                <span>{{user_stak.price}}</span> <span>{{user_stak.count}}</span> <span class="action-button">Buy</span>
+                <!--Async POST query to /user/stakan/buy with param {login, from, to, price, count}-->
                 {% endif %}
             </li>
             {% endfor %}
@@ -55,15 +56,15 @@
             </select>
             From :
             <select>
-                    {% for coin in coins %}
-                    <option value="{{coin.id}}">{{coin.name}}</option>
-                    {% endfor %}
+                {% for coin in coins %}
+                <option value="{{coin.id}}">{{coin.name}}</option>
+                {% endfor %}
             </select>
             To :
             <select>
-                    {% for coin in coins %}
-                    <option value="{{coin.id}}">{{coin.name}}</option>
-                    {% endfor %}
+                {% for coin in coins %}
+                <option value="{{coin.id}}">{{coin.name}}</option>
+                {% endfor %}
             </select>
             <label>Price : <input type="text"></label>
             <label>Amount : <input type="text"></label>
@@ -79,12 +80,14 @@
                 <span>Action</span>
             </div>
             <!--Fill on server-->
-             {% for user_stak in user_stakans %}
-                {% if user_stak.status.value == 'Active' %}
+            {% for user_stak in user_stakans %}
+            {% if user_stak.status.value == 'Active' %}
             <li>
-                <span class="cash">{{ user_stak.coinsFrom[0].name }}</span> <span class="cash">{{ user_stak.coinsTo[0].name }}</span> <span>{{ user_stak.price }}</span> <span>{{ user_stak.count}}</span> <span class="action-button">Delete</span>
+                <span class="cash">{{ user_stak.coinsFrom[0].name }}</span> <span class="cash">{{ user_stak.coinsTo[0].name }}</span>
+                <span>{{ user_stak.price }}</span> <span>{{ user_stak.count}}</span> <span
+                    class="action-button">Delete</span>
             </li>
-                 {% endif %}
+            {% endif %}
             {% endfor %}
         </ul>
     </section>
@@ -101,11 +104,13 @@
             </div>
             <!--Fill on server-->
             {% for user_stak in user_stakans %}
-                {% if user_stak.status.value == 'Inactive' %}
+            {% if user_stak.status.value == 'Inactive' %}
             <li>
-                <span class="cash">{{ user_stak.coinsFrom[0].name }}</span> <span class="cash">{{ user_stak.coinsTo[0].name }}</span> <span>{{ user_stak.price }}</span> <span>{{ user_stak.count}}</span> <span>{{user_stak.type.value}}</span><span>{{user_stak.date}}</span>
+                <span class="cash">{{ user_stak.coinsFrom[0].name }}</span> <span class="cash">{{ user_stak.coinsTo[0].name }}</span>
+                <span>{{ user_stak.price }}</span> <span>{{ user_stak.count}}</span>
+                <span>{{user_stak.type.value}}</span><span>{{user_stak.date}}</span>
             </li>
-                {% endif %}
+            {% endif %}
             {% endfor %}
         </ul>
 

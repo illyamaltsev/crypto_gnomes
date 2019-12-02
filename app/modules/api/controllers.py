@@ -31,8 +31,6 @@ def do_withdraw():
     db.session.add(wh)
     db.session.commit()
 
-
-
     return Response('ok', 200)
 
 
@@ -81,7 +79,7 @@ def do_stakan_buy():
 
 
 @api.route('/api/stakan/delete/', methods=['POST'])
-def do_stakan_buy():
+def do_stakan_delete():
     user_id = session.get('user_id')
     stakan_id = request.form.get('stakan_id')
     stakan = Stakan.query.get(stakan_id)
@@ -89,4 +87,3 @@ def do_stakan_buy():
     db.session.delete(stakan)
     db.session.commit()
     return Response('ok', 200)
-
