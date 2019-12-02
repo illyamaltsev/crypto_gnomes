@@ -36,7 +36,7 @@
             </div>
             {% for stkn in all_stakans %}
             <li>
-             <span class="cash">{{stkn.coinsFrom.name}}</span> <span class="cash">{{stkn.coinsTo.name}}</span> <span>{{stkn.price}}</span> <span>{{stkn.count}}</span> <span class="action-button">Buy</span>
+             <span class="cash">{{stkn.coins_from.name}}</span> <span class="cash">{{stkn.coins_to.name}}</span> <span>{{all_stkn.price}}</span> <span>{{all_stkn.count}}</span> <span class="action-button">Buy</span>
             <!--Async POST query to /user/stakan/buy with param {login, from, to, price, count}-->
             </li>
             {% endfor %}
@@ -89,7 +89,7 @@
         <ul>
             <!--{% for user_cup in user_stakans %}-->
             <!--<li>-->
-                <!--<span>Bought From: </span>{{user_cup.coinsFrom.name}} to:<span>{{user_cup.coinsTo.name}}</span>,  price: <span>user_stakans.price</span> , count: <span>user_stakans.count</span>-->
+                <!--<span>Bought From: </span>{{user_cup.coins_from.coins.name}} to:<span>{{user_stakans.coins_to.coins.name}}</span>,  price: <span>user_stakans.price</span> , count: <span>user_stakans.count</span>-->
             <!--</li>-->
             <!--{% endfor %}-->
             <div class="orders__headings">

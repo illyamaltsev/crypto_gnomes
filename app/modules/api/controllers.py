@@ -50,7 +50,7 @@ def do_deposit():
 
 
 @api.route('/api/stakan/create/', methods=['POST'])
-def do_stakan():
+def do_stakan_create():
     user_id = session.get('user_id')
     type = request.form.get('type')
     from_coin_id = request.form.get('from')
@@ -66,4 +66,14 @@ def do_stakan():
     db.session.commit()
     return Response('ok', 200)
 
+
+@api.route('/api/stakan/buy/', methods=['POST'])
+def do_stakan_buy():
+    user_id = session.get('user_id')
+    stakan_id = request.form.get('stakan_id')
+    stakan = Stakan.query.get(stakan_id)
+
+
+    db.session.commit()
+    return Response('ok', 200)
 
