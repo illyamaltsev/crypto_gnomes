@@ -1,6 +1,5 @@
 var addWalletButton = document.querySelector('.addWallet').querySelector('button');
 
-
 if(addWalletButton) {
     addWalletButton.addEventListener('click', function (e) {
         e.preventDefault();
