@@ -23,7 +23,7 @@ def auth():
 
     if user and user.password == password:
         session["user_id"] = user.id
-        return redirect(url_for("pages.user_page"))
+        return redirect(url_for("pages.user"))
     else:
         return Response("Bad login or pass!", status=401)
 
