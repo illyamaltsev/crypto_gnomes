@@ -20,95 +20,25 @@
     </div>
 </header>
 <main>
-    <section class="order-history">
-        <h1><i style="margin-right: 10px" class="fas fa-signal"></i> Order history</h1>
-        Тут будет график
+    <section class="about">
+        <h1>About Cryptognome</h1>
+Cryptognome має одну з найбільш захищених торгових платформ та інфраструктуру цифрового холдингу у світі, де клієнти можуть отримати доступ до захоплюючих нових продуктів. Побудований за найсучаснішою технологією, Cryptognome надає інституційний досвід як для професійних клієнтів , так і для клієнтів-початківців. Штаб-квартира компанії знаходиться біля історичного центру Києва, в Україні. Що відрізняє Cryptognome?
+Безпечна платформа - у Cryptognome використовуються найнадійніші, ефективні технології безпеки. Cryptognome також дозволяє дворівневу автентифікацію для всіх користувачів і надає безліч додаткових функцій безпеки для забезпечення захисту. Безпека завжди є нашим першочерговим пріоритетом!
+Швидкі депозити та зняття коштів
+- Наша високоефективна та автоматизована платформа моніторингу дозволяє нам надавати користувачам найбільш швидкі доступні на сьогодні транзакції. Сюди входять оновлення інформації про баланс, торгівлю та зберігання інформації.
+Рушійні інновації
+– Для того,щоб  сприяти інноваціям у галузі індустрії блокчейн, Cryptognome прагне підтримувати як нові, так і вже створені блокчейни. Cryptognome прагне надати своїм користувачам постійно зростаючий вибір технологій blockchain  та цифрових токенів.
+Зобов'язання щодо дотримання вимог
+- Cryptognome зобов’язаний дотримуватися всіх чинних норм, які допомагають запобігти, виявити та усунути протиправну поведінку клієнтів та розробників віртуальної валюти при використанні торгової платформи Cryptognome або будь-якої з інших послуг компанії.
+        <h1>Глобальні Клієнти</h1>
+- Cryptognome прийматиме клієнтів з усього світу.
+        <h1>Management Team</h1>
+Ілля Мальцев, 3й курс спеціальності «Прикладна математика» НаУКМА
+Данило Таран, 4й курс спеціальності «Прикладна математика» НаУКМА
+Олександра Уткіна, 4й курс спеціальності «Комп’ютерні науки та інформаційні технології» НаУКМА
+
     </section>
-    <section class="orders">
-        <h1><i style="margin-right: 10px;" class="fas fa-list-alt"></i> Current orders</h1>
-        <ul>
-            <div class="orders__headings">
-                <span>From</span>
-                <span>To</span>
-                <span>Price</span>
-                <span>Amount</span>
-                <span>Action</span>
-            </div>
-            {% for stkn in all_stakans %}
-            <li>
-             <span class="cash">{{stkn.coins_from.name}}</span> <span class="cash">{{stkn.coins_to.name}}</span> <span>{{all_stkn.price}}</span> <span>{{all_stkn.count}}</span> <span class="action-button">Buy</span>
-            <!--Async POST query to /user/stakan/buy with param {login, from, to, price, count}-->
-            </li>
-            {% endfor %}
-        </ul>
-    </section>
-    <section class="orders">
-        <h1><i style="margin-right: 10px;" class="fas fa-user-tag"></i> User orders</h1>
-        <form>
-            <!--Fill on server-->
-            <select>
-                <option value="sell">Sell</option>
-                <option value="buy" selected>Buy</option>
-            </select>
-            From :
-            <select>
-                    {% for coin in coins %}
-                    <option value="{{coin.id}}">{{coin.name}}</option>
-                    {% endfor %}
-            </select>
-            To :
-            <select>
-                    {% for coin in coins %}
-                    <option value="{{coin.id}}">{{coin.name}}</option>
-                    {% endfor %}
-            </select>
-            <label>Price : <input type="text"></label>
-            <label>Amount : <input type="text"></label>
-            <button>Create cup</button>
-            <!--Async POST query to /user/stakan/create with param {login, type, from, to, price, count}-->
-        </form>
-        <ul>
-            <div class="orders__headings">
-                <span>From</span>
-                <span>To</span>
-                <span>Price</span>
-                <span>Amount</span>
-                <span>Action</span>
-            </div>
-            <!--Fill on server-->
-            <li>
-                <span class="cash">btc</span> <span class="cash">usd</span> <span>100</span> <span>2</span> <span class="action-button">Delete</span>
-            </li>
-            <li>
-                <span class="cash">btc</span> <span class="cash">usd</span> <span>100</span> <span>2</span> <span class="action-button">Delete</span>
-            </li>
-        </ul>
-    </section>
-    <section class="orders">
-        <h1><i style="margin-right: 10px;" class="fas fa-history"></i> User orders history</h1>
-        <ul>
-            <!--{% for user_cup in user_stakans %}-->
-            <!--<li>-->
-                <!--<span>Bought From: </span>{{user_cup.coins_from.coins.name}} to:<span>{{user_stakans.coins_to.coins.name}}</span>,  price: <span>user_stakans.price</span> , count: <span>user_stakans.count</span>-->
-            <!--</li>-->
-            <!--{% endfor %}-->
-            <div class="orders__headings">
-                <span>From</span>
-                <span>To</span>
-                <span>Price</span>
-                <span>Amount</span>
-                <span>Action</span>
-                <span>Time</span>
-            </div>
-            <!--Fill on server-->
-            <li>
-                <span class="cash">btc</span> <span class="cash">usd</span> <span>100</span> <span>2</span> <span>Bought</span><span>23 November 1977</span>
-            </li>
-            <li>
-                <span class="cash">btc</span> <span class="cash">usd</span> <span>100</span> <span>2</span> <span>Sold</span><span>23 November 1977</span>
-            </li>
-        </ul>
-    </section>
+
 </main>
 <script src="../static/js/main.js"></script>
 </body>

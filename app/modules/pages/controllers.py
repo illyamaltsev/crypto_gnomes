@@ -1,5 +1,4 @@
 import hashlib
-from html import escape
 
 from flask import session, url_for, redirect, render_template, request
 

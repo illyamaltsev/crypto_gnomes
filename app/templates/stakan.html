@@ -35,8 +35,7 @@
                 <span>Action</span>
             </div>
             {% for user_stak in user_stakans %}
-<<<<<<< HEAD
-            <li id="{{stkn.id}}">
+            <li id="{{user_stak.id}}">
              <span class="cash">{{user_stak.coinsFrom.name}}</span> <span class="cash">{{user_stak.coinsTo.name}}</span> <span>{{user_stak.price}}</span> <span>{{user_stak.count}}</span> <span class="action-button">Buy</span>
             <!--Async POST query to /user/stakan/buy with param {login, from, to, price, count}-->
             </li>
@@ -104,17 +103,6 @@
     <section class="orders">
         <h1><i style="margin-right: 10px;" class="fas fa-history"></i> User orders history</h1>
         <ul>
-<<<<<<< HEAD
-          <!--  {% for user_cup in user_stakans %}
-            <<li>
-                <<span>Bought From: </span>{{user_cup.coins_from.coins.name}} to:<span>{{user_stakans.coins_to.coins.name}}</span>,  price: <span>{{user_stakans.price}}</span> , count: <span>{{user_stakans.count}}</span>-->
-=======
-            <!--{% for user_cup in user_stakans %}-->
-            <!--<li>-->
-                <!--<span>Bought From: </span>{{user_cup.coinsFrom.name}} to:<span>{{user_cup.coinsTo.name}}</span>,  price: <span>user_stakans.price</span> , count: <span>user_stakans.count</span>-->
->>>>>>> origin/master
-            <!--</li>-->
-            <!--{% endfor %}-->
             <div class="orders__headings">
                 <span>From</span>
                 <span>To</span>
