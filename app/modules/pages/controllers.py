@@ -43,7 +43,7 @@ def registration():
 
 @login_required
 @pages.route("/user/")
-def user_page():
+def user():
     """ View that returns user template.
     """
     user_id = session.get('user_id', None)
@@ -76,6 +76,16 @@ def stakan():
 
     user_stakans = Stakan.query.filter_by(user_id=user_id)
 
-
-
     return render_template('stakan.html', user=user, all_stakans=all_stakans, user_stakans=user_stakans, coins=coins)
+
+
+@login_required
+@pages.route("/about/")
+def about():
+    """ View that returns stakan template.
+    """
+    user_id = session.get('user_id', None)
+
+    user = User.query.get(user_id)
+
+    return render_template('about.html', user=user)

@@ -11,8 +11,9 @@
 <header>
     <div class="header__wrap">
         <a class="header__logo" href="/">Cryptognomes</a>
-        <a class="link--active" href="/">User page</a>
+        <a class="link--active" href="{{ url_for('pages.user') }}">User page</a>
         <a href="{{ url_for('pages.stakan') }}">Orders</a>
+        <a href="{{ url_for('pages.about') }}">About us</a>
         <div class="logout">
             Hello, <span class="login">{{ user.login }}</span>!
             <a href="/logout">Logout</a>
