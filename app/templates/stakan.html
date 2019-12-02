@@ -34,9 +34,10 @@
                 <span>Amount</span>
                 <span>Action</span>
             </div>
-            {% for stkn in all_stakans %}
-            <li>
-             <span class="cash">{{stkn.coinsFrom.name}}</span> <span class="cash">{{stkn.coinsTo.name}}</span> <span>{{stkn.price}}</span> <span>{{stkn.count}}</span> <span class="action-button">Buy</span>
+            {% for user_stak in user_stakans %}
+<<<<<<< HEAD
+            <li id="{{stkn.id}}">
+             <span class="cash">{{user_stak.coinsFrom.name}}</span> <span class="cash">{{user_stak.coinsTo.name}}</span> <span>{{user_stak.price}}</span> <span>{{user_stak.count}}</span> <span class="action-button">Buy</span>
             <!--Async POST query to /user/stakan/buy with param {login, from, to, price, count}-->
             </li>
             {% endfor %}
@@ -67,6 +68,9 @@
             <button>Create cup</button>
             <!--Async POST query to /user/stakan/create with param {login, type, from, to, price, count}-->
         </form>
+
+        <!-- 1st part -->
+
         <ul>
             <div class="orders__headings">
                 <span>From</span>
@@ -76,20 +80,39 @@
                 <span>Action</span>
             </div>
             <!--Fill on server-->
+
+<!--usStakan.coin_To.name-->
+             {% for user_stak in user_stakans %}
+             {% if user_stak.status.value  == 'A'%}
             <li>
-                <span class="cash">btc</span> <span class="cash">usd</span> <span>100</span> <span>2</span> <span class="action-button">Delete</span>
+                <span class="cash">{{ user_stak.coinsFrom.name }}</span> <span class="cash">{{ user_stak.coinsTo.name }}</span> <span>>{{ user_stak.price }}</span> <span>{{ user_stak.count}}</span> <span class="action-button">Delete</span>
             </li>
-            <li>
-                <span class="cash">btc</span> <span class="cash">usd</span> <span>100</span> <span>2</span> <span class="action-button">Delete</span>
-            </li>
+             {% endif %}
+            {% endfor %}
         </ul>
     </section>
+
+
+
+
+
+
+
+    <!-- end of 1st part -->
+
+
     <section class="orders">
         <h1><i style="margin-right: 10px;" class="fas fa-history"></i> User orders history</h1>
         <ul>
+<<<<<<< HEAD
+          <!--  {% for user_cup in user_stakans %}
+            <<li>
+                <<span>Bought From: </span>{{user_cup.coins_from.coins.name}} to:<span>{{user_stakans.coins_to.coins.name}}</span>,  price: <span>{{user_stakans.price}}</span> , count: <span>{{user_stakans.count}}</span>-->
+=======
             <!--{% for user_cup in user_stakans %}-->
             <!--<li>-->
                 <!--<span>Bought From: </span>{{user_cup.coinsFrom.name}} to:<span>{{user_cup.coinsTo.name}}</span>,  price: <span>user_stakans.price</span> , count: <span>user_stakans.count</span>-->
+>>>>>>> origin/master
             <!--</li>-->
             <!--{% endfor %}-->
             <div class="orders__headings">
@@ -101,13 +124,18 @@
                 <span>Time</span>
             </div>
             <!--Fill on server-->
+
+             {% for user_stak in user_stakans %}
+             {% if user_stak.status.value  == 'InA'%}
             <li>
-                <span class="cash">btc</span> <span class="cash">usd</span> <span>100</span> <span>2</span> <span>Bought</span><span>23 November 1977</span>
+                <span class="cash">{{ user_stak.coins_from.name }}</span> <span class="cash">{{ user_stak.coins_to.name }}</span> <span>{ user_stak.price }}</span> <span>{{ user_stak.count}}</span> <span>{{user_stak.type.value}}</span><span>{{user_stak.date}}</span>
             </li>
-            <li>
-                <span class="cash">btc</span> <span class="cash">usd</span> <span>100</span> <span>2</span> <span>Sold</span><span>23 November 1977</span>
-            </li>
+    {% endif %}
+{% endfor %}
         </ul>
+
+
+
     </section>
 </main>
 <script src="../static/js/main.js"></script>
