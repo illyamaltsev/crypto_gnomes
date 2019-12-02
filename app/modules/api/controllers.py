@@ -57,7 +57,7 @@ def do_stakan_create():
     user_id = session.get('user_id')
     type = request.form.get('type')
     from_coin_id = request.form.get('from')
-    to_coin_id = request.form.get('type')
+    to_coin_id = request.form.get('to')
     price = request.form.get('price')
     count = request.form.get('count')
 
