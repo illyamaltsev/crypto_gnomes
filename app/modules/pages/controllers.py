@@ -17,7 +17,7 @@ def login():
     user_id = session.get('user_id', None)
 
     if user_id and User.query.get(user_id):
-        return redirect(url_for('pages.user_page'))
+       return redirect(url_for('pages.user'))
 
     return render_template('authorization.html')
 
