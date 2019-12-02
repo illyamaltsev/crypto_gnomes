@@ -76,10 +76,6 @@ def stakan():
 
     user_stakans = Stakan.query.filter_by(user_id=user_id)
 
-    for s in user_stakans:
-        print(s.coinsFrom)
-        print(s.coinsFrom[0].id)
-
     return render_template('stakan.html', user=user, all_stakans=all_stakans, user_stakans=user_stakans, coins=coins)
 
 

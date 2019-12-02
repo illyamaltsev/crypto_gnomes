@@ -66,26 +66,26 @@
         </div>
     </section>
     <section class="updateBalance updateBalance--withdraw">
-        <div class="updateBalance__wrap">
+        <form class="updateBalance__wrap" name="withdraw">
             <div>
                 <span class="updateBalance__closeButton"><i class="fas fa-times"></i></span>
                 <span>Currency to withdraw :</span> <span class="updateBalance__currency"></span>
             </div>
-            <input type="number" placeholder="Amount">
-            <button class="withdraw">Withdraw</button>
+            <input type="number" name="amount" placeholder="Amount">
+            <button type="button" class="withdraw">Withdraw</button>
             <!--Async POST query to /user/withdrow with param {login, count, coinName}-->
-        </div>
+        </form>
     </section>
     <section class="updateBalance updateBalance--deposit">
-        <div class="updateBalance__wrap">
+        <form class="updateBalance__wrap" name="deposit">
             <div>
                 <span class="updateBalance__closeButton"><i class="fas fa-times"></i></span>
                 <span>Currency to deposit :</span> <span class="updateBalance__currency"></span>
             </div>
-            <input type="number" placeholder="Amount">
-            <button class="deposit">Deposit</button>
+            <input type="number" name="amount" placeholder="Amount">
+            <button type="button" class="deposit">Deposit</button>
             <!--Async POST query to /user/deposit with param {login, count, coinName}-->
-        </div>
+        </form>
     </section>
     <section class="wallet-history">
         <h1><i style="margin-right: 10px;" class="fas fa-history"></i> Wallet history</h1>
