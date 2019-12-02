@@ -30,6 +30,9 @@ def do_withdraw():
 
     db.session.add(wh)
     db.session.commit()
+
+
+
     return Response('ok', 200)
 
 

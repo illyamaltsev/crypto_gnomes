@@ -17,7 +17,7 @@ def login():
     user_id = session.get('user_id', None)
 
     if user_id and User.query.get(user_id):
-        return redirect(url_for('pages.user_page'))
+        return redirect(url_for('pages.user'))
 
     return render_template('authorization.html')
 
@@ -75,10 +75,6 @@ def stakan():
     coins = Coin.query.all()
 
     user_stakans = Stakan.query.filter_by(user_id=user_id)
-
-    for s in user_stakans:
-        print(s.coinsFrom)
-        print(s.coinsFrom[0].id)
 
     return render_template('stakan.html', user=user, all_stakans=all_stakans, user_stakans=user_stakans, coins=coins)
 
