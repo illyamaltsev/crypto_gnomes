@@ -1,6 +1,7 @@
 from flask import session, request, Response
 
-from app.database.models import UserCoin, db
+from app.database.enums import W_D
+from app.database.models import UserCoin, db, WalletHistory
 from . import api
 
 
@@ -24,6 +25,10 @@ def do_withdraw():
 
     uc = UserCoin.query.get(user_coin_id)
     uc.balance -= amount
+
+    wh = WalletHistory(user_id=user_id, coin_id=uc.coin.id, count=amount, operation=W_D.W)
+
+    db.session.add(wh)
     db.session.commit()
     return Response('ok', 200)
 
@@ -36,6 +41,10 @@ def do_deposit():
 
     uc = UserCoin.query.get(user_coin_id)
     uc.balance += amount
+
+    wh = WalletHistory(user_id=user_id, coin_id=uc.coin.id, count=amount, operation=W_D.D)
+
+    db.session.add(wh)
     db.session.commit()
     return Response('ok', 200)
 

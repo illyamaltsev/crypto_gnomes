@@ -57,7 +57,9 @@ def user_page():
 
     coins = Coin.query.all()
 
-    return render_template('user.html', user=user, user_coins=user_coins, wallet_history=wallet_history, coins=coins)
+    have_coins_id = [x.coin.id for x in user_coins]
+
+    return render_template('user.html', user=user, user_coins=user_coins, wallet_history=wallet_history, coins=coins, have_coins_id=have_coins_id)
 
 
 @login_required

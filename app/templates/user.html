@@ -8,26 +8,26 @@
     <script src="https://kit.fontawesome.com/658f54bbb0.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
-        <div class="header__wrap">
-            <a class="header__logo" href="/">Cryptognomes</a>
-            <a class="link--active" href="/">User page</a>
-            <a href="{{ url_for('pages.stakan') }}">Orders</a>
-            <div class="logout">
-                Hello <span class="login">{{user.login}}</span>
-                <a href="/logout">Logout</a>
-            </div>
+<header>
+    <div class="header__wrap">
+        <a class="header__logo" href="/">Cryptognomes</a>
+        <a class="link--active" href="/">User page</a>
+        <a href="{{ url_for('pages.stakan') }}">Orders</a>
+        <div class="logout">
+            Hello, <span class="login">{{ user.login }}</span>!
+            <a href="/logout">Logout</a>
         </div>
-    </header>
-    <main>
+    </div>
+</header>
+<main>
 
-        <section class="wallets">
+    <section class="wallets">
         <h1><i style="margin-right: 10px;" class="fas fa-key"></i> Keys</h1>
-            <span>Open key: <code>{{ user.open_key }}</code></span>
-            <span>Private key: <code>{{ user.private_key }}</code></span>
+        <span>Open key: <code>{{ user.open_key }}</code></span>
+        <span>Private key: <code>{{ user.private_key }}</code></span>
     </section>
 
-        <section class="wallets">
+    <section class="wallets">
         <!--Fill on server-->
         <h1><i style="margin-right: 10px;" class="fas fa-wallet"></i> Wallets</h1>
         <ul>
@@ -38,13 +38,14 @@
             </div>
             {% for user_coin in user_coins %}
                 <li>
-                    <span class="wallet-name"><i class="fas fa-{{ user_coin.coin.icon_class }}"></i>{{ user_coin.coin.name }}</span>
+                    <span class="wallet-name"><i
+                            class="fas fa-{{ user_coin.coin.icon_class }}"></i>{{ user_coin.coin.name }}</span>
                     <span class="wallet-amount">{{ user_coin.balance }}</span>
                     <div>
                         <span data-action="withdraw" class="action-button">Withdrow</span>
                         <span data-action="deposit" class="action-button">Deposit</span>
                     </div>
-                 </li>
+                </li>
             {% endfor %}
         </ul>
         <div class="wallets__add">
@@ -52,7 +53,9 @@
             <form class="addWallet">
                 <select>
                     {% for coin in coins %}
-                    <option value="{{coin.id}}">{{coin.name}}</option>
+                        {% if coin.id in have_coin_id %}
+                            <option value="{{ coin.id }}">{{ coin.name }}</option>
+                        {% endif %}
                     {% endfor %}
                 </select>
                 <button>Add wallet</button>
@@ -67,7 +70,8 @@
                 <span>Currency to withdraw :</span> <span class="updateBalance__currency"></span>
             </div>
             <input type="number" placeholder="Amount">
-            <button class="withdraw">Withdraw</button> <!--Async POST query to /user/withdrow with param {login, count, coinName}-->
+            <button class="withdraw">Withdraw</button>
+            <!--Async POST query to /user/withdrow with param {login, count, coinName}-->
         </div>
     </section>
     <section class="updateBalance updateBalance--deposit">
@@ -77,7 +81,8 @@
                 <span>Currency to deposit :</span> <span class="updateBalance__currency"></span>
             </div>
             <input type="number" placeholder="Amount">
-            <button class="deposit">Deposit</button> <!--Async POST query to /user/deposit with param {login, count, coinName}-->
+            <button class="deposit">Deposit</button>
+            <!--Async POST query to /user/deposit with param {login, count, coinName}-->
         </div>
     </section>
     <section class="wallet-history">
@@ -90,29 +95,30 @@
                 <span>Time</span>
             </div>
             {% for w_history in wallet_history %}
-              <!--<li>-->
+                <!--<li>-->
                 <!--<span>Type = {{w_history.operation.value}}</span> <span>Currency: {{w_history.coin.name}}</span>  <span>= {{w_history.count}}</span>-->
                 <li>
-                    <span class="wallet-history__currency"><i class="fas fa-{{ w_history.coin.icon_class }}"></i> {{w_history.coin.name}}</span>
-                    <span class="wallet-history__amount">{{w_history.count}}</span>
-                    <span class="wallet-history__type">{{w_history.operation.value}}</span>
-                    <span class="wallet-history__time">{{w_history.date}}</span>
+                    <span class="wallet-history__currency"><i
+                            class="fas fa-{{ w_history.coin.icon_class }}"></i> {{ w_history.coin.name }}</span>
+                    <span class="wallet-history__amount">{{ w_history.count }}</span>
+                    <span class="wallet-history__type">{{ w_history.operation.value }}</span>
+                    <span class="wallet-history__time">{{ w_history.date }}</span>
                 </li>
-              <!--</li>-->
+                <!--</li>-->
             {% endfor %}
         </ul>
     </section>
-    </main>
-    <template id="wallet">
-        <li>
-            <span class="wallet-name"></span>
-            <span class="wallet-amount">0.0</span>
-            <div>
-                <span data-action="withdraw" class="action-button">Withdrow</span>
-                <span data-action="deposit" class="action-button">Deposit</span>
-            </div>
-        </li>
-    </template>
+</main>
+<template id="wallet">
+    <li>
+        <span class="wallet-name"></span>
+        <span class="wallet-amount">0.0</span>
+        <div>
+            <span data-action="withdraw" class="action-button">Withdrow</span>
+            <span data-action="deposit" class="action-button">Deposit</span>
+        </div>
+    </li>
+</template>
 <script src="../static/js/main.js"></script>
 </body>
 </html>

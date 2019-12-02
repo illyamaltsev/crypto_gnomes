@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import func
 from sqlalchemy.orm import backref
 
 from app.database.enums import W_D, B_S, A_InA
@@ -44,6 +45,7 @@ class WalletHistory(db.Model):
     coin_id = db.Column(db.Integer, db.ForeignKey("coins.id"), nullable=False)
     count = db.Column(db.Float, nullable=False)
     operation = db.Column(db.Enum(W_D), server_default="W")
+    date = db.Column(db.DateTime, server_default=func.now(), nullable=False)
 
     coin = db.relationship(Coin, backref=backref("wallet_history", cascade="all, delete-orphan"))
 
@@ -69,6 +71,7 @@ class Stakan(db.Model):
     price = db.Column(db.Float, nullable=False)
     status = db.Column(db.Enum(A_InA), server_default="InA")
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    date = db.Column(db.DateTime, server_default=func.now(), nullable=False)
 
     coinsFrom = db.relationship("Coin", secondary=coins_from)
     coinsTo = db.relationship("Coin", secondary=coins_to)
