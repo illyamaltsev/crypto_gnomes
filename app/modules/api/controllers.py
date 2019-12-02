@@ -1,7 +1,7 @@
 from flask import session, request, Response
 
 from app.database.enums import W_D
-from app.database.models import UserCoin, db, WalletHistory
+from app.database.models import UserCoin, db, WalletHistory, Stakan, Coin
 from . import api
 
 
@@ -48,4 +48,32 @@ def do_deposit():
     db.session.commit()
     return Response('ok', 200)
 
+
+@api.route('/api/stakan/create/', methods=['POST'])
+def do_stakan_create():
+    user_id = session.get('user_id')
+    type = request.form.get('type')
+    from_coin_id = request.form.get('from')
+    to_coin_id = request.form.get('type')
+    price = request.form.get('price')
+    count = request.form.get('count')
+
+    coin_from = Coin.query_get(from_coin_id)
+    coin_to = Coin.query_get(to_coin_id)
+
+    new_stakan = Stakan(type=type, coinsFrom=coin_from, coinsTo=coin_to, price=price, user_id=user_id, count=count)
+    db.session.add(new_stakan)
+    db.session.commit()
+    return Response('ok', 200)
+
+
+@api.route('/api/stakan/buy/', methods=['POST'])
+def do_stakan_buy():
+    user_id = session.get('user_id')
+    stakan_id = request.form.get('stakan_id')
+    stakan = Stakan.query.get(stakan_id)
+
+
+    db.session.commit()
+    return Response('ok', 200)
 
