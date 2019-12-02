@@ -36,10 +36,8 @@
                 <span>Action</span>
             </div>
             {% for user_stak in user_stakans %}
-
                 {% if user_stak.status.value == 'Active' %}
             <li id="{{user_stak.id}}">
-
              <span class="cash">{{user_stak.coinsFrom[0].name}}</span> <span class="cash">{{user_stak.coinsTo[0].name}}</span> <span>{{user_stak.price}}</span> <span>{{user_stak.count}}</span> <span class="action-button">Buy</span>
             <!--Async POST query to /user/stakan/buy with param {login, from, to, price, count}-->
                 {% endif %}
@@ -72,9 +70,6 @@
             <button>Create cup</button>
             <!--Async POST query to /user/stakan/create with param {login, type, from, to, price, count}-->
         </form>
-
-        <!-- 1st part -->
-
         <ul>
             <div class="orders__headings">
                 <span>From</span>
@@ -84,10 +79,7 @@
                 <span>Action</span>
             </div>
             <!--Fill on server-->
-
-<!--usStakan.coin_To.name-->
              {% for user_stak in user_stakans %}
-
                 {% if user_stak.status.value == 'Active' %}
             <li>
                 <span class="cash">{{ user_stak.coinsFrom[0].name }}</span> <span class="cash">{{ user_stak.coinsTo[0].name }}</span> <span>{{ user_stak.price }}</span> <span>{{ user_stak.count}}</span> <span class="action-button">Delete</span>
@@ -96,16 +88,6 @@
             {% endfor %}
         </ul>
     </section>
-
-
-
-
-
-
-
-    <!-- end of 1st part -->
-
-
     <section class="orders">
         <h1><i style="margin-right: 10px;" class="fas fa-history"></i> User orders history</h1>
         <ul>
@@ -125,11 +107,8 @@
                 <span class="cash">{{ user_stak.coinsFrom[0].name }}</span> <span class="cash">{{ user_stak.coinsTo[0].name }}</span> <span>{{ user_stak.price }}</span> <span>{{ user_stak.count}}</span> <span>{{user_stak.type.value}}</span><span>{{user_stak.date}}</span>
             </li>
                 {% endif %}
-
             {% endfor %}
         </ul>
-
-
 
     </section>
 </main>
