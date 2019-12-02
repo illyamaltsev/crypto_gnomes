@@ -23,14 +23,6 @@
     <section class="order-history">
         <h1><i style="margin-right: 10px" class="fas fa-signal"></i> Order history</h1>
         Тут будет график
-        <!--<ul>-->
-            <!--{% for all_stkn in all_stakans %}-->
-            <!--<li>-->
-                <!--<span>Bought From: {{all_stkn.coins_from.coins.name}}</span> <span>To:{{all_stkn.coins_to.coins.name}}</span> <span>Price:{{all_stkn.price}}</span> <span>Count:{{all_stkn.count}}</span>-->
-                <!--<span>Bought To: {{all_stkn.coins_to.coins.name}}</span> <span>To:{{all_stkn.coins_to.coins.name}}</span> <span>Price:{{all_stkn.price}}</span> <span>Count:{{all_stkn.count}}</span>-->
-            <!--</li>-->
-            <!--{% endfor %}-->
-        <!--</ul>-->
     </section>
     <section class="orders">
         <h1><i style="margin-right: 10px;" class="fas fa-list-alt"></i> Current orders</h1>
@@ -42,15 +34,12 @@
                 <span>Amount</span>
                 <span>Action</span>
             </div>
-            <!--Fill on server-->
+            {% for stkn in all_stakans %}
             <li>
-                 <span class="cash">btc</span> <span class="cash">usd</span> <span>100</span> <span>2</span> <span class="action-button">Buy</span>
-                <!--Async POST query to /user/stakan/buy with param {login, from, to, price, count}-->
+             <span class="cash">{{stkn.coins_from.name}}</span> <span class="cash">{{stkn.coins_to.name}}</span> <span>{{all_stkn.price}}</span> <span>{{all_stkn.count}}</span> <span class="action-button">Buy</span>
+            <!--Async POST query to /user/stakan/buy with param {login, from, to, price, count}-->
             </li>
-            <li>
-                <span class="cash">btc</span> <span class="cash">usd</span> <span>100</span> <span>2</span> <span class="action-button">Sell</span>
-                <!--Async POST query to /user/stakan/sell with param {login, from, to, price, count}-->
-            </li>
+            {% endfor %}
         </ul>
     </section>
     <section class="orders">
@@ -63,15 +52,15 @@
             </select>
             From :
             <select>
-                <option value={{coin.name}}</option>
-                <option value="grn" selected>Grivna</option>
-                <option value="usd">Dollar</option>
+                    {% for coin in coins %}
+                    <option value="{{coin.id}}">{{coin.name}}</option>
+                    {% endfor %}
             </select>
             To :
             <select>
-                <option value="btc">Bitcoin</option>
-                <option value="grn" selected>Grivna</option>
-                <option value="usd">Dollar</option>
+                    {% for coin in coins %}
+                    <option value="{{coin.id}}">{{coin.name}}</option>
+                    {% endfor %}
             </select>
             <label>Price : <input type="text"></label>
             <label>Amount : <input type="text"></label>

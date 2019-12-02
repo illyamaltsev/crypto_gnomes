@@ -1,6 +1,9 @@
+import hashlib
+from html import escape
+
 from flask import session, url_for, redirect, render_template, request
 
-from app.database.models import User, User_Coin, Wallet_History, Stakan, db, Coin, Coin_From, Coin_To
+from app.database.models import User, UserCoin, WalletHistory, Stakan, db, Coin
 from app.modules.auth import login_required
 from . import pages
 
@@ -29,7 +32,9 @@ def registration():
         password = request.form["password"]
         if User.query.filter_by(login=login).first():
             return redirect(url_for('pages.registration'))
-        new_user = User(login=login, password=password)
+        open_key = hashlib.sha256(password.encode()).hexdigest()
+        private_key = hashlib.sha256(open_key.encode()).hexdigest()
+        new_user = User(login=login, password=password, open_key=open_key, private_key=private_key)
         db.session.add(new_user)
         db.session.commit()
         return redirect(url_for('pages.login'))
@@ -46,9 +51,9 @@ def user_page():
 
     user = User.query.get(user_id)
 
-    user_coins = User_Coin.query.filter_by(user_id=user_id).all()
+    user_coins = UserCoin.query.filter_by(user_id=user_id).all()
 
-    wallet_history = Wallet_History.query.filter_by(user_id=user_id).all()
+    wallet_history = WalletHistory.query.filter_by(user_id=user_id).all()
 
     coins = Coin.query.all()
 
@@ -66,17 +71,8 @@ def stakan():
 
     all_stakans = Stakan.query.all()
 
+    coins = Coin.query.all()
+
     user_stakans = Stakan.query.filter_by(user_id=user_id)
 
-    coin_from = Coin_From.query.all()
-
-    coin_to = Coin_To.query.all()
-
-
-
-    return render_template('stakan.html', user=user, all_stakans=all_stakans, user_stakans=user_stakans, coin_from = coin_from, coin_to = coin_to )
-
-
-
-
-
+    return render_template('stakan.html', user=user, all_stakans=all_stakans, user_stakans=user_stakans, coins=coins)
