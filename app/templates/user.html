@@ -40,7 +40,7 @@
             </div>
             {% for user_coin in user_coins %}
                 <li>
-                    <span class="wallet-name"><i
+                    <span class="wallet-name" id="{{ user_coin.id }}"><i
                             class="fas fa-{{ user_coin.coin.icon_class }}"></i>{{ user_coin.coin.name }}</span>
                     <span class="wallet-amount">{{ user_coin.balance }}</span>
                     <div>
