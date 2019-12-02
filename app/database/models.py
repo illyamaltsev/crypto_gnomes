@@ -69,7 +69,7 @@ class Stakan(db.Model):
     type = db.Column(db.Enum(B_S), server_default="B")
     count = db.Column(db.Float, nullable=False)
     price = db.Column(db.Float, nullable=False)
-    status = db.Column(db.Enum(A_InA), server_default="InA")
+    status = db.Column(db.Enum(A_InA), server_default="A")
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     date = db.Column(db.DateTime, server_default=func.now(), nullable=False)
 

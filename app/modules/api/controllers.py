@@ -52,7 +52,6 @@ def do_deposit():
 @api.route('/api/stakan/create/', methods=['POST'])
 def do_stakan():
     user_id = session.get('user_id')
-    user_coin_id = request.form.get('user_coin_id')
     type = request.form.get('type')
     from_coin_id = request.form.get('from')
     to_coin_id = request.form.get('type')
@@ -62,8 +61,8 @@ def do_stakan():
     coin_from = Coin.query_get(from_coin_id)
     coin_to = Coin.query_get(to_coin_id)
 
-    new_stakan = Stakan(type=type, coinsFrom=coin_from, coinsTo=coin_to, price=price)
-    # db.session.add(wh)
+    new_stakan = Stakan(type=type, coinsFrom=coin_from, coinsTo=coin_to, price=price, user_id=user_id, count=count)
+    db.session.add(new_stakan)
     db.session.commit()
     return Response('ok', 200)
 
