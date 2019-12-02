@@ -48,27 +48,27 @@
     </section>
     <section class="orders">
         <h1><i style="margin-right: 10px;" class="fas fa-user-tag"></i> User orders</h1>
-        <form>
+        <form name="createOrder">
             <!--Fill on server-->
-            <select>
+            <select name="type">
                 <option value="sell">Sell</option>
                 <option value="buy" selected>Buy</option>
             </select>
             From :
-            <select>
-                {% for coin in coins %}
-                <option value="{{coin.id}}">{{coin.name}}</option>
-                {% endfor %}
+            <select name="from">
+                    {% for coin in coins %}
+                    <option value="{{coin.id}}">{{coin.name}}</option>
+                    {% endfor %}
             </select>
             To :
-            <select>
-                {% for coin in coins %}
-                <option value="{{coin.id}}">{{coin.name}}</option>
-                {% endfor %}
+            <select name="to">
+                    {% for coin in coins %}
+                    <option value="{{coin.id}}">{{coin.name}}</option>
+                    {% endfor %}
             </select>
-            <label>Price : <input type="text"></label>
-            <label>Amount : <input type="text"></label>
-            <button>Create cup</button>
+            <label>Price : <input name="price" type="number"></label>
+            <label>Amount : <input name="count" type="number"></label>
+            <button type="button" class="create-order">Create order</button>
             <!--Async POST query to /user/stakan/create with param {login, type, from, to, price, count}-->
         </form>
         <ul>
@@ -116,6 +116,12 @@
 
     </section>
 </main>
+<template id="order">
+    <li>
+        <span class="cash"></span> <span class="cash"></span>
+        <span></span> <span></span> <span class="action-button">Delete</span>
+    </li>
+</template>
 <script src="../static/js/main.js"></script>
 </body>
 </html>

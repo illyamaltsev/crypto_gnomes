@@ -1,6 +1,8 @@
-var addWalletButton = document.querySelector('.addWallet').querySelector('button');
+var addwalletEl = document.querySelector('.addWallet');
 
-if(addWalletButton) {
+
+if(addwalletEl) {
+    var addWalletButton = addwalletEl.querySelector('button');
     addWalletButton.addEventListener('click', function (e) {
         e.preventDefault();
         var index = document.querySelector('.addWallet').querySelector('select').selectedIndex;
@@ -25,12 +27,13 @@ if(addWalletButton) {
 }
 
 
-var walletList = document.querySelector('.wallets').querySelectorAll('li');
-var depositSection = document.querySelector('.updateBalance--deposit');
-var withdrawSection = document.querySelector('.updateBalance--withdraw');
+var walletEl = document.querySelector('.wallets');
 
 
-if(walletList) {
+if(walletEl) {
+    var walletList = walletEl.querySelectorAll('li');
+    var depositSection = document.querySelector('.updateBalance--deposit');
+    var withdrawSection = document.querySelector('.updateBalance--withdraw');
     var postWithdraw = function() {
 
     }
@@ -90,5 +93,19 @@ if(walletList) {
     });
 }
 
-var withdrawButton = document.querySelector('.withdraw');
-var depositButton = document.querySelector('.deposit');
+var createOrderButton = document.querySelector('.create-order');
+
+if(createOrderButton) {
+    createOrderButton.addEventListener('click', function () {
+        var formEl = document.forms.createOrder;
+        var formData = new FormData(formEl);
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/api/stakan/create/");
+
+        xhr.onreadystatechange = function() {
+          if (this.readyState != 4) return;
+          console.log('YES');
+        }
+        xhr.send(formData);
+    });
+}
