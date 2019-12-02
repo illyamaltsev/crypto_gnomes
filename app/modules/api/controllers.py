@@ -79,3 +79,14 @@ def do_stakan_buy():
     db.session.commit()
     return Response('ok', 200)
 
+
+@api.route('/api/stakan/delete/', methods=['POST'])
+def do_stakan_buy():
+    user_id = session.get('user_id')
+    stakan_id = request.form.get('stakan_id')
+    stakan = Stakan.query.get(stakan_id)
+
+    db.session.delete(stakan)
+    db.session.commit()
+    return Response('ok', 200)
+
