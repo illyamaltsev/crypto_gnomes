@@ -16,6 +16,7 @@ marshmallow-sqlalchemy = "*"
 pymysql = "*"
 flask-admin = "*"
 wtforms-appengine = "*"
+google = "*"
 
 [requires]
 python_version = "3.7"

@@ -10,7 +10,8 @@
 """
 
 from flask import Flask
-from flask_admin.contrib.appengine import ModelView
+
+from flask_admin.contrib.sqla import ModelView
 
 from app.database import models
 from app.database.marshmallow import ma
@@ -36,8 +37,8 @@ def create_app(config_object=None):
     app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
 
     admin = Admin(app, name='admin', template_mode='bootstrap3')
-    #admin.add_view(ModelView(Coin, db.session))
-    #admin.add_view(ModelView(UserCoin, db.session))
+    admin.add_view(ModelView(Coin, db.session))
+    admin.add_view(ModelView(UserCoin, db.session))
     # Add administrative views here
 
     """ Blueprints connection
