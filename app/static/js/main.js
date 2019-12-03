@@ -17,10 +17,11 @@ if(addwalletEl) {
         xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 
         xhr.onreadystatechange = function () {
-            if (this.readyState != 4) return;
-            var clone = document.importNode(document.querySelector('#wallet').content, true);
-            clone.querySelector('.wallet-name').innerHTML = this.responseText;
-            document.querySelector('.wallets').querySelector('ul').appendChild(clone);
+            if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                var clone = document.importNode(document.querySelector('#wallet').content, true);
+                clone.querySelector('.wallet-name').innerHTML = this.responseText;
+                document.querySelector('.wallets').querySelector('ul').appendChild(clone);
+            }
         };
         xhr.send(json);
     });
@@ -61,9 +62,10 @@ if(walletEl) {
                     xhr.open("POST", "/api/do-withdraw/");
 
                     xhr.onreadystatechange = function() {
-                      if (this.readyState != 4) return;
-                      withdrawSection.querySelector('.updateBalance__closeButton').click();
-                      el.querySelector('.wallet-amount').textContent = +el.querySelector('.wallet-amount').textContent - withdrawSection.querySelector('input').value;
+                      if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                          withdrawSection.querySelector('.updateBalance__closeButton').click();
+                          el.querySelector('.wallet-amount').textContent = +el.querySelector('.wallet-amount').textContent - withdrawSection.querySelector('input').value;
+                      }
                     }
                     xhr.send(formData);
                 }
@@ -79,9 +81,10 @@ if(walletEl) {
                     xhr.open("POST", "/api/do-deposit/");
 
                     xhr.onreadystatechange = function() {
-                      if (this.readyState != 4) return;
-                      depositSection.querySelector('.updateBalance__closeButton').click();
-                      el.querySelector('.wallet-amount').textContent = +el.querySelector('.wallet-amount').textContent + +depositSection.querySelector('input').value;
+                      if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                          depositSection.querySelector('.updateBalance__closeButton').click();
+                          el.querySelector('.wallet-amount').textContent = +el.querySelector('.wallet-amount').textContent + +depositSection.querySelector('input').value;
+                      }
                     }
                     xhr.send(formData);
                 }
@@ -103,14 +106,25 @@ if(createOrderButton) {
         xhr.open("POST", "/api/stakan/create/");
 
         xhr.onreadystatechange = function() {
-          if (this.readyState != 4) return;
-          var clone = document.importNode(document.querySelector('#order').content, true);
-          clone.querySelector('.order__from').innerHTML = formEl.querySelector('select[name=from]').options[formEl.querySelector('select[name=from]').selectedIndex].text;
-          clone.querySelector('.order__to').innerHTML = formEl.querySelector('select[name=to]').options[formEl.querySelector('select[name=to]').selectedIndex].text;
-          clone.querySelector('.order__price').innerHTML = formData.get('price');
-          clone.querySelector('.order__count').innerHTML = formData.get('count');
-          document.querySelector('.orders').querySelector('ul').appendChild(clone);
-        }
+          if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            var clone = document.importNode(document.querySelector('#order').content, true);
+            clone.querySelector('.order__from').innerHTML = formEl.querySelector('select[name=from]').options[formEl.querySelector('select[name=from]').selectedIndex].text;
+            clone.querySelector('.order__to').innerHTML = formEl.querySelector('select[name=to]').options[formEl.querySelector('select[name=to]').selectedIndex].text;
+            clone.querySelector('.order__price').innerHTML = formData.get('price');
+            clone.querySelector('.order__count').innerHTML = formData.get('count');
+            document.querySelectorAll('.orders')[0].querySelector('ul').appendChild(clone);
+
+
+            clone = document.importNode(document.querySelector('#current-order').content, true);
+            clone.querySelector('.order__from').innerHTML = formEl.querySelector('select[name=from]').options[formEl.querySelector('select[name=from]').selectedIndex].text;
+            clone.querySelector('.order__to').innerHTML = formEl.querySelector('select[name=to]').options[formEl.querySelector('select[name=to]').selectedIndex].text;
+            clone.querySelector('.order__price').innerHTML = formData.get('price');
+            clone.querySelector('.order__count').innerHTML = formData.get('count');
+            clone.querySelector('.order__action').innerHTML = formEl.querySelector('select[name=type]').options[formEl.querySelector('select[name=type]').selectedIndex].text;
+            document.querySelectorAll('.orders')[1].querySelector('ul').appendChild(clone);
+
+          };
+        };
         xhr.send(formData);
     });
 }
