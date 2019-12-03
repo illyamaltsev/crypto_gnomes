@@ -101,7 +101,7 @@
             <!--Fill on server-->
             {% for user_stak in user_stakans %}
             {% if user_stak.status.value == 'Active' %}
-            <li>
+            <li id="{{user_stak.id}}">
                 <span class="cash">{{ user_stak.coinsFrom[0].name }}</span> <span class="cash">{{ user_stak.coinsTo[0].name }}</span>
                 <span>{{ user_stak.price }}</span> <span>{{ user_stak.count}}</span> <span>{{user_stak.type.value}}</span><span data-action="delete" class="action-button">Delete</span>
             </li>

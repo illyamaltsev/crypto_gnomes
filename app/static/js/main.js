@@ -113,7 +113,23 @@ if(createOrderButton) {
             clone.querySelector('.order__price').innerHTML = formData.get('price');
             clone.querySelector('.order__count').innerHTML = formData.get('count');
             clone.querySelector('.order__action').innerHTML = formEl.querySelector('select[name=type]').options[formEl.querySelector('select[name=type]').selectedIndex].text;
-            clone.querySelector('li').setAttribute('id', this.responseText);
+            var newLi = clone.querySelector('li');
+            newLi.setAttribute('id', this.responseText);
+            newLi.addEventListener('click', function(e) {
+                 if(e.target.classList[0]=== 'action-button') {
+                    var formData = new FormData();
+                    formData.append("stakan_id", newLi.id);
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", "/api/stakan/buy/");
+
+                    xhr.onreadystatechange = function() {
+                        if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                            newLi.remove();
+                        }
+                    };
+                    xhr.send(formData);
+                };
+            });
             document.querySelectorAll('.orders')[0].querySelector('ul').appendChild(clone);
 
 
@@ -125,8 +141,28 @@ if(createOrderButton) {
             clone.querySelector('.order__count').innerHTML = formData.get('count');
             clone.querySelector('.order__action').innerHTML = formEl.querySelector('select[name=type]').options[formEl.querySelector('select[name=type]').selectedIndex].text;
             clone.querySelector('li').setAttribute('id', this.responseText);
-            document.querySelectorAll('.orders')[1].querySelector('ul').appendChild(clone);
+            var newLi = clone.querySelector('li');
+            newLi.setAttribute('id', this.responseText);
+            newLi.addEventListener('click', function(e) {
+                 if(e.target.dataset.action === 'delete') {
+                    var formData = new FormData();
+                    formData.append("stakan_id", newLi.id);
 
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", "/api/stakan/delete/");
+
+                    xhr.onreadystatechange = function() {
+                        if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                            newLi.remove();
+                            document.querySelectorAll('.orders')[0].querySelectorAll('li').forEach(function(element) {
+                                if(element.id === newLi.id) element.remove();
+                            });
+                        }
+                    };
+                     xhr.send(formData);
+                };
+            });
+            document.querySelectorAll('.orders')[1].querySelector('ul').appendChild(clone);
           };
         };
         xhr.send(formData);
@@ -148,7 +184,10 @@ if(userOrders) {
 
                 xhr.onreadystatechange = function() {
                     if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-
+                        el.remove();
+                        document.querySelectorAll('.orders')[0].querySelectorAll('li').forEach(function(element) {
+                            if(element.id === el.id) element.remove();
+                        });
                     }
                 };
                  xhr.send(formData);
@@ -174,7 +213,7 @@ if(currentOrders) {
 
                 xhr.onreadystatechange = function() {
                     if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                        console.log('yess');
+                        el.remove();
                     }
                 };
                  xhr.send(formData);
