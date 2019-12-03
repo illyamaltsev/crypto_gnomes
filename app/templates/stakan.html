@@ -52,7 +52,7 @@
                 <span>Amount</span>
                 <span>Action</span>
             </div>
-            {% for user_stak in user_stakans %}
+            {% for user_stak in all_stakans %}
             {% if user_stak.status.value == 'Active' %}
             <li id="{{user_stak.id}}">
                 <span class="cash">{{user_stak.coinsFrom[0].name}}</span> <span class="cash">{{user_stak.coinsTo[0].name}}</span>
