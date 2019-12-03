@@ -112,6 +112,7 @@ if(createOrderButton) {
             clone.querySelector('.order__to').innerHTML = formEl.querySelector('select[name=to]').options[formEl.querySelector('select[name=to]').selectedIndex].text;
             clone.querySelector('.order__price').innerHTML = formData.get('price');
             clone.querySelector('.order__count').innerHTML = formData.get('count');
+            clone.querySelector('.order__action').innerHTML = formEl.querySelector('select[name=type]').options[formEl.querySelector('select[name=type]').selectedIndex].text;
             document.querySelectorAll('.orders')[0].querySelector('ul').appendChild(clone);
 
 
@@ -127,4 +128,18 @@ if(createOrderButton) {
         };
         xhr.send(formData);
     });
+}
+
+var userOrders = document.querySelectorAll('.orders')[1];
+
+if(userOrders) {
+    var li = userOrders.querySelectorAll('li');
+     li.forEach(function (el) {
+        el.addEventListener('click', function (e) {
+            if(e.target.dataset.action === 'delete') {
+
+            }
+         });
+     });
+
 }

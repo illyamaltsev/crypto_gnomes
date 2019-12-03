@@ -102,7 +102,7 @@
             {% if user_stak.status.value == 'Active' %}
             <li>
                 <span class="cash">{{ user_stak.coinsFrom[0].name }}</span> <span class="cash">{{ user_stak.coinsTo[0].name }}</span>
-                <span>{{ user_stak.price }}</span> <span>{{ user_stak.count}}</span> <span>{{user_stak.type.value}}</span><span class="action-button">Delete</span>
+                <span>{{ user_stak.price }}</span> <span>{{ user_stak.count}}</span> <span>{{user_stak.type.value}}</span><span data-action="delete" class="action-button">Delete</span>
             </li>
             {% endif %}
             {% endfor %}
@@ -136,13 +136,13 @@
 <template id="order">
     <li>
         <span class="cash order__from"></span> <span class="cash order__to"></span>
-        <span class="order__price"></span> <span class="order__count"></span> <span class="action-button">Delete</span>
+        <span class="order__price"></span> <span class="order__count"></span> <span class="order__action action-button"></span>
     </li>
 </template>
 <template id="current-order">
     <li>
         <span class="cash order__from"></span> <span class="cash order__to"></span>
-        <span class="order__price"></span> <span class="order__count"></span> <span class="order__action"></span> <span class="action-button">Delete</span>
+        <span class="order__price"></span> <span class="order__count"></span> <span class="order__action"></span> <span data-action="delete" class="action-button">Delete</span>
     </li>
 </template>
 <script src="../static/js/main.js"></script>
