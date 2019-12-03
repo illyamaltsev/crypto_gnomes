@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Orders</title>
     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/main.css">
     <script src="https://kit.fontawesome.com/658f54bbb0.js" crossorigin="anonymous"></script>
@@ -15,7 +15,7 @@
         <a class="link--active" href="{{ url_for('pages.stakan') }}">Orders</a>
         <a href="{{ url_for('pages.about') }}">About us</a>
         <div class="logout">
-            Hello <span class="login">{{user.login}}</span>
+            Hello,<span class="login">{{user.login}}</span>
             <a href="/logout">Logout</a>
         </div>
     </div>
@@ -23,7 +23,24 @@
 <main>
     <section class="order-history">
         <h1><i style="margin-right: 10px" class="fas fa-signal"></i> Order history</h1>
-        Тут будет график
+        BTC/UAH
+        <canvas id="myChart"></canvas>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        <script>
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['28.11', '29.11', '30.11','1.12', '2.12', '3.12'],
+                    datasets: [{
+                        label: 'BTC/UAH',
+                        borderColor: 'rgb(0, 255, 0)',
+                        data: [18000,  18900, 18700 ,18700, 18500, 17000]
+                    }]
+                },
+                options: {}
+            });
+        </script>
     </section>
     <section class="orders">
         <h1><i style="margin-right: 10px;" class="fas fa-list-alt"></i> Current orders</h1>
@@ -35,7 +52,7 @@
                 <span>Amount</span>
                 <span>Action</span>
             </div>
-            {% for user_stak in user_stakans %}
+            {% for user_stak in all_stakans %}
             {% if user_stak.status.value == 'Active' %}
             <li id="{{user_stak.id}}">
                 <span class="cash">{{user_stak.coinsFrom[0].name}}</span> <span class="cash">{{user_stak.coinsTo[0].name}}</span>
@@ -120,6 +137,12 @@
     <li>
         <span class="cash order__from"></span> <span class="cash order__to"></span>
         <span class="order__price"></span> <span class="order__count"></span> <span class="action-button">Delete</span>
+    </li>
+</template>
+<template id="current-order">
+    <li>
+        <span class="cash order__from"></span> <span class="cash order__to"></span>
+        <span class="order__price"></span> <span class="order__count"></span> <span class="order__action"></span> <span class="action-button">Delete</span>
     </li>
 </template>
 <script src="../static/js/main.js"></script>
