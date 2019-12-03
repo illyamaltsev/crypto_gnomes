@@ -58,8 +58,9 @@
                 <span class="cash">{{user_stak.coinsFrom[0].name}}</span> <span class="cash">{{user_stak.coinsTo[0].name}}</span>
                 <span>{{user_stak.price}}</span> <span>{{user_stak.count}}</span> <span class="action-button">Buy</span>
                 <!--Async POST query to /user/stakan/buy with param {login, from, to, price, count}-->
-                {% endif %}
+
             </li>
+            {% endif %}
             {% endfor %}
         </ul>
     </section>

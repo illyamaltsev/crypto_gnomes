@@ -55,10 +55,8 @@
             <h1>Add wallet</h1>
             <form class="addWallet">
                 <select>
-                    {% for coin in coins %}
-                        {% if not coin.id in have_coin_id %}
+                    {% for coin in not_have_coins %}
                             <option value="{{ coin.id }}">{{ coin.name }}</option>
-                        {% endif %}
                     {% endfor %}
                 </select>
                 <button>Add wallet</button>

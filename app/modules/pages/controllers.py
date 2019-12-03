@@ -57,8 +57,9 @@ def user():
     coins = Coin.query.all()
 
     have_coins_id = [x.coin.id for x in user_coins]
+    not_have_coins = filter(lambda x: x.id not in have_coins_id, coins)
 
-    return render_template('user.html', user=user, user_coins=user_coins, wallet_history=wallet_history, coins=coins, have_coins_id=have_coins_id)
+    return render_template('user.html', user=user, user_coins=user_coins, wallet_history=wallet_history, coins=coins, not_have_coins=not_have_coins)
 
 
 @login_required
