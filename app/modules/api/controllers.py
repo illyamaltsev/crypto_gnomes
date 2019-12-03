@@ -67,7 +67,7 @@ def do_stakan_create():
     new_stakan.coinsFrom.append(coin_from)
     db.session.add(new_stakan)
     db.session.commit()
-    return Response('ok', 200)
+    return Response(str(new_stakan.id), 200)
 
 
 @api.route('/api/stakan/buy/', methods=['POST'])
