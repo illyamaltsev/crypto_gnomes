@@ -77,6 +77,7 @@
                 <span>To</span>
                 <span>Price</span>
                 <span>Amount</span>
+                <span>Operation type</span>
                 <span>Action</span>
             </div>
             <!--Fill on server-->
@@ -84,8 +85,7 @@
             {% if user_stak.status.value == 'Active' %}
             <li>
                 <span class="cash">{{ user_stak.coinsFrom[0].name }}</span> <span class="cash">{{ user_stak.coinsTo[0].name }}</span>
-                <span>{{ user_stak.price }}</span> <span>{{ user_stak.count}}</span> <span
-                    class="action-button">Delete</span>
+                <span>{{ user_stak.price }}</span> <span>{{ user_stak.count}}</span> <span>{{user_stak.type.value}}</span><span class="action-button">Delete</span>
             </li>
             {% endif %}
             {% endfor %}
