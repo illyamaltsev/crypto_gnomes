@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Main Page</title>
+    <title>User</title>
     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/main.css">
     <script src="https://kit.fontawesome.com/658f54bbb0.js" crossorigin="anonymous"></script>
@@ -15,7 +15,7 @@
         <a href="{{ url_for('pages.stakan') }}">Orders</a>
         <a href="{{ url_for('pages.about') }}">About us</a>
         <div class="logout">
-            Hello, <span class="login">{{ user.login }}</span>!
+            Hello,<span class="login">{{ user.login }}</span>!
             <a href="/logout">Logout</a>
         </div>
     </div>

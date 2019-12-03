@@ -13,7 +13,7 @@ if(addwalletEl) {
         });
 
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", '/api/create-wallet', true)
+        xhr.open("POST", '/api/create-wallet/', true)
         xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 
         xhr.onreadystatechange = function () {
