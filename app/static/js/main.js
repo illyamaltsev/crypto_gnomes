@@ -113,7 +113,9 @@ if(createOrderButton) {
             clone.querySelector('.order__price').innerHTML = formData.get('price');
             clone.querySelector('.order__count').innerHTML = formData.get('count');
             clone.querySelector('.order__action').innerHTML = formEl.querySelector('select[name=type]').options[formEl.querySelector('select[name=type]').selectedIndex].text;
+            clone.querySelector('li').setAttribute('id', this.responseText);
             document.querySelectorAll('.orders')[0].querySelector('ul').appendChild(clone);
+
 
 
             clone = document.importNode(document.querySelector('#current-order').content, true);
@@ -122,6 +124,7 @@ if(createOrderButton) {
             clone.querySelector('.order__price').innerHTML = formData.get('price');
             clone.querySelector('.order__count').innerHTML = formData.get('count');
             clone.querySelector('.order__action').innerHTML = formEl.querySelector('select[name=type]').options[formEl.querySelector('select[name=type]').selectedIndex].text;
+            clone.querySelector('li').setAttribute('id', this.responseText);
             document.querySelectorAll('.orders')[1].querySelector('ul').appendChild(clone);
 
           };
@@ -137,9 +140,47 @@ if(userOrders) {
      li.forEach(function (el) {
         el.addEventListener('click', function (e) {
             if(e.target.dataset.action === 'delete') {
+                var formData = new FormData();
+                formData.append("stakan_id", el.id);
 
-            }
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "/api/stakan/delete/");
+
+                xhr.onreadystatechange = function() {
+                    if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+
+                    }
+                };
+                 xhr.send(formData);
+                };
+
+            });
          });
-     });
+
+}
+
+var currentOrders = document.querySelectorAll('.orders')[0];
+
+if(currentOrders) {
+    var li = currentOrders.querySelectorAll('li');
+     li.forEach(function (el) {
+        el.addEventListener('click', function (e) {
+            if(e.target.classList[0]=== 'action-button') {
+                var formData = new FormData();
+                formData.append("stakan_id", el.id);
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "/api/stakan/buy/");
+
+                xhr.onreadystatechange = function() {
+                    if(xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                        console.log('yess');
+                    }
+                };
+                 xhr.send(formData);
+                };
+
+            });
+         });
 
 }
