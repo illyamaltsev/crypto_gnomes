@@ -56,7 +56,7 @@
             {% if user_stak.status.value == 'Active' %}
             <li id="{{user_stak.id}}">
                 <span class="cash">{{user_stak.coinsFrom[0].name}}</span> <span class="cash">{{user_stak.coinsTo[0].name}}</span>
-                <span>{{user_stak.price}}</span> <span>{{user_stak.count}}</span> <span class="action-button">Buy</span>
+                <span>{{user_stak.price}}</span> <span>{{user_stak.count}}</span> <span class="action-button">{{user_stak.type.value}}</span>
                 <!--Async POST query to /user/stakan/buy with param {login, from, to, price, count}-->
 
             </li>
@@ -65,7 +65,7 @@
         </ul>
     </section>
     <section class="orders">
-        <h1><i style="margin-right: 10px;" class="fas fa-user-tag"></i> User orders</h1>
+        <h1><i style="margin-right: 10px;" class="fas fa-user-tag"></i> Your orders</h1>
         <form name="createOrder">
             <!--Fill on server-->
             <select name="type">
@@ -110,7 +110,7 @@
         </ul>
     </section>
     <section class="orders">
-        <h1><i style="margin-right: 10px;" class="fas fa-history"></i> User orders history</h1>
+        <h1><i style="margin-right: 10px;" class="fas fa-history"></i> Your orders history</h1>
         <ul>
             <div class="orders__headings">
                 <span>From</span>

@@ -62,7 +62,10 @@ def do_stakan_create():
     coin_from = Coin.query.get(from_coin_id)
     coin_to = Coin.query.get(to_coin_id)
 
-    new_stakan = Stakan(type=B_S.B, price=price, user_id=user_id, count=count)
+    if type == "Buy":
+        new_stakan = Stakan(type=B_S.B, price=price, user_id=user_id, count=count)
+    else:
+        new_stakan = Stakan(type=B_S.S, price=price, user_id=user_id, count=count)
     new_stakan.coinsTo.append(coin_to)
     new_stakan.coinsFrom.append(coin_from)
     db.session.add(new_stakan)
@@ -107,5 +110,8 @@ def do_stakan_buy():
 def do_stakan_delete():
     user_id = session.get('user_id')
     stakan_id = request.form.get('stakan_id')
-    Stakan.query.filter_by(id=stakan_id).delete()
+    stakan = Stakan.query.get(stakan_id)
+
+    db.session.delete(stakan)
+    db.session.commit()
     return Response('ok', 200)
