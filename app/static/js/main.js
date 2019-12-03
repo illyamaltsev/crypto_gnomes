@@ -104,7 +104,12 @@ if(createOrderButton) {
 
         xhr.onreadystatechange = function() {
           if (this.readyState != 4) return;
-          console.log('YES');
+          var clone = document.importNode(document.querySelector('#order').content, true);
+          clone.querySelector('.order__from').innerHTML = formEl.querySelector('select[name=from]').options[formEl.querySelector('select[name=from]').selectedIndex].text;
+          clone.querySelector('.order__to').innerHTML = formEl.querySelector('select[name=to]').options[formEl.querySelector('select[name=to]').selectedIndex].text;
+          clone.querySelector('.order__price').innerHTML = formData.get('price');
+          clone.querySelector('.order__count').innerHTML = formData.get('count');
+          document.querySelector('.orders').querySelector('ul').appendChild(clone);
         }
         xhr.send(formData);
     });

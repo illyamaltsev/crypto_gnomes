@@ -51,8 +51,8 @@
         <form name="createOrder">
             <!--Fill on server-->
             <select name="type">
-                <option value="sell">Sell</option>
-                <option value="buy" selected>Buy</option>
+                <option value="Sell">Sell</option>
+                <option value="Buy" selected>Buy</option>
             </select>
             From :
             <select name="from">
@@ -118,8 +118,8 @@
 </main>
 <template id="order">
     <li>
-        <span class="cash"></span> <span class="cash"></span>
-        <span></span> <span></span> <span class="action-button">Delete</span>
+        <span class="cash order__from"></span> <span class="cash order__to"></span>
+        <span class="order__price"></span> <span class="order__count"></span> <span class="action-button">Delete</span>
     </li>
 </template>
 <script src="../static/js/main.js"></script>

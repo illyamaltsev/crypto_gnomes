@@ -1,6 +1,6 @@
 from flask import session, request, Response
 
-from app.database.enums import W_D
+from app.database.enums import W_D, B_S
 from app.database.models import UserCoin, db, WalletHistory, Stakan, Coin, User
 from . import api
 
@@ -62,7 +62,7 @@ def do_stakan_create():
     coin_from = Coin.query.get(from_coin_id)
     coin_to = Coin.query.get(to_coin_id)
 
-    new_stakan = Stakan(type=type, price=price, user_id=user_id, count=count)
+    new_stakan = Stakan(type=B_S.B, price=price, user_id=user_id, count=count)
     new_stakan.coinsTo.append(coin_to)
     new_stakan.coinsFrom.append(coin_from)
     db.session.add(new_stakan)
